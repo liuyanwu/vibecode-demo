@@ -66,34 +66,64 @@ bun install
 
 ### 4. 配置 API
 
-#### 使用 Qwen (推荐)
-
-创建 `.env` 文件：
+创建 `.env` 文件并配置你的 API Key：
 
 ```bash
-# Qwen API 配置
+# 使用 Qwen (推荐)
 ANTHROPIC_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
-ANTHROPIC_API_KEY=sk-your-qwen-api-key-here
+ANTHROPIC_API_KEY=你的_API_Key
 ANTHROPIC_MODEL=qwen3.5-plus
+
+# 或使用 Claude API
+# ANTHROPIC_API_KEY=你的_API_Key
+# ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
 ```
 
 获取 API Key：[阿里云 DashScope](https://dashscope.console.aliyun.com/)
 
-#### 使用 Claude API
-
-```bash
-ANTHROPIC_API_KEY=sk-ant-your-claude-api-key
-ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
-```
-
 ### 5. 运行
 
 ```bash
-# 使用 Qwen
-bun run dev:qwen
+# 开发模式
+bun run dev
 
 # 或使用 .env 配置
 bun run --env-file=.env main.tsx
+```
+
+### 6. 安装为全局命令
+
+#### Windows
+
+```powershell
+# 创建批处理文件
+New-Item -ItemType File -Path "$env:USERPROFILE\bin\vibecode.cmd" -Force
+Set-Content -Path "$env:USERPROFILE\bin\vibecode.cmd" -Value '@echo off
+bun run --env-file="%~dp0..\vibecode\.env" "%~dp0..\vibecode\main.tsx" %*'
+
+# 添加到 PATH
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:USERPROFILE\bin", "User")
+```
+
+#### macOS / Linux
+
+```bash
+# 创建启动脚本
+mkdir -p ~/.local/bin
+cat > ~/.local/bin/vibecode << 'EOF'
+#!/bin/bash
+cd /path/to/vibecode
+bun run --env-file=.env main.tsx "$@"
+EOF
+chmod +x ~/.local/bin/vibecode
+
+# 确保 ~/.local/bin 在 PATH 中
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+安装完成后，可以在任意目录使用：
+```bash
+vibecode
 ```
 
 ---
