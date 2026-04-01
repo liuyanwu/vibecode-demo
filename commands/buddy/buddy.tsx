@@ -1,4 +1,4 @@
-import { Box, Text } from 'ink';
+import { Box, Text, useInput } from 'ink';
 import React, { useEffect, useState } from 'react';
 import { getCompanion } from '../../buddy/companion.js';
 import type { LocalJSXCommandCall } from '../../types/command.js';
@@ -223,6 +223,40 @@ const FeedMenu = ({ onDone }: { onDone: () => void }) => {
     }
   }, [fed]);
 
+  // 处理键盘输入
+  useInput((input, key) => {
+    if (fed) return; // 喂食完成后不再处理输入
+
+    // 数字键 1-5 选择食物
+    const num = parseInt(input, 10);
+    if (!isNaN(num) && num >= 1 && num <= FOODS.length) {
+      setSelected(num - 1);
+      return;
+    }
+
+    // 上下箭头切换选择
+    if (key.upArrow) {
+      setSelected((prev: number) => (prev > 0 ? prev - 1 : FOODS.length - 1));
+      return;
+    }
+    if (key.downArrow) {
+      setSelected((prev: number) => (prev < FOODS.length - 1 ? prev + 1 : 0));
+      return;
+    }
+
+    // Enter 或 Space 确认喂食
+    if (key.return || input === ' ') {
+      handleFeed();
+      return;
+    }
+
+    // ESC 或 q 退出
+    if (key.escape || input === 'q' || input === 'Q') {
+      onDone();
+      return;
+    }
+  });
+
   const handleFeed = () => {
     const food = FOODS[selected];
     if (buddy) {
@@ -262,7 +296,7 @@ const FeedMenu = ({ onDone }: { onDone: () => void }) => {
         </Box>
       ))}
       <Box marginTop={2}>
-        <Text dimColor>输入数字 1-{FOODS.length} 选择食物</Text>
+        <Text dimColor>按数字 1-{FOODS.length} 选择 | ↑↓ 切换 | Enter 确认 | ESC/q 退出</Text>
       </Box>
     </Box>
   );
