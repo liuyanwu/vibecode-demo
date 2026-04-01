@@ -1,11 +1,10 @@
 import { Box, Text } from 'ink';
 import React, { useEffect, useState } from 'react';
-import { getCompanion, roll, companionUserId } from '../../buddy/companion.js';
-import { RARITY_COLORS, RARITY_STARS } from '../../buddy/types.js';
-import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js';
+import { getCompanion } from '../../buddy/companion.js';
 import type { LocalJSXCommandCall } from '../../types/command.js';
 import { useSetAppState } from '../../state/AppState.js';
 import figures from 'figures';
+import { getBuddyState, saveBuddyState, initBuddyState, type BuddyState } from '../../buddy/buddyState.js';
 
 // 皮卡丘 ASCII 艺术 - 多帧动画
 const PIKACHU_FRAMES = [
@@ -81,64 +80,6 @@ const FOODS = [
   { name: '能量饮料', value: 50, emoji: '⚡' },
   { name: '大师蛋糕', value: 80, emoji: '🎂' },
 ];
-
-// 伙伴状态接口
-interface BuddyState {
-  name: string;
-  species: string;
-  level: number;
-  exp: number;
-  expToNext: number;
-  happiness: number;
-  hunger: number;
-  energy: number;
-  health: number;
-  affection: number;
-  mood: 'happy' | 'excited' | 'sleepy' | 'hungry' | 'sad' | 'normal';
-  petCount: number;
-  feedCount: number;
-  playCount: number;
-  isSleeping: boolean;
-  personality: string;
-  hatchedAt: number;
-}
-
-// 获取或初始化伙伴状态
-function getBuddyState(): BuddyState | undefined {
-  const config = getGlobalConfig() as any;
-  return config.buddyState;
-}
-
-function saveBuddyState(state: BuddyState): void {
-  saveGlobalConfig((config: any) => ({
-    ...config,
-    buddyState: state,
-  }));
-}
-
-function initBuddyState(name: string, species: string): BuddyState {
-  const state: BuddyState = {
-    name,
-    species,
-    level: 1,
-    exp: 0,
-    expToNext: 100,
-    happiness: 50,
-    hunger: 30,
-    energy: 80,
-    health: 100,
-    affection: 10,
-    mood: 'normal',
-    petCount: 0,
-    feedCount: 0,
-    playCount: 0,
-    isSleeping: false,
-    personality: 'A loyal Pokemon companion.',
-    hatchedAt: Date.now(),
-  };
-  saveBuddyState(state);
-  return state;
-}
 
 // 孵化流程
 const HatchingFlow = ({ onDone }: { onDone: () => void }) => {
@@ -241,7 +182,9 @@ const PetAnimation = ({ onDone }: { onDone: () => void }) => {
       buddy.happiness = Math.min(100, buddy.happiness + 5);
       buddy.affection = Math.min(100, buddy.affection + 2);
       buddy.mood = 'happy';
-      buddy.petCount++;
+      buddy.stats.petCount++;
+      buddy.stats.totalInteractions++;
+      buddy.stats.lastInteraction = Date.now();
       saveBuddyState(buddy);
     }
 
@@ -287,7 +230,9 @@ const FeedMenu = ({ onDone }: { onDone: () => void }) => {
       buddy.happiness = Math.min(100, buddy.happiness + 3);
       buddy.energy = Math.min(100, buddy.energy + 10);
       buddy.mood = buddy.hunger > 50 ? 'happy' : 'normal';
-      buddy.feedCount++;
+      buddy.stats.feedCount++;
+      buddy.stats.totalInteractions++;
+      buddy.stats.lastInteraction = Date.now();
       saveBuddyState(buddy);
     }
     setFed(true);
@@ -335,7 +280,9 @@ const PlayAnimation = ({ onDone }: { onDone: () => void }) => {
       buddy.hunger = Math.min(100, buddy.hunger + 10);
       buddy.affection = Math.min(100, buddy.affection + 3);
       buddy.mood = 'excited';
-      buddy.playCount++;
+      buddy.stats.playCount++;
+      buddy.stats.totalInteractions++;
+      buddy.stats.lastInteraction = Date.now();
       // 增加经验
       buddy.exp += 10;
       if (buddy.exp >= buddy.expToNext) {
@@ -572,7 +519,7 @@ const BuddyStatus = ({ onDone }: { onDone: () => void }) => {
 
       {/* 统计信息 */}
       <Box marginTop={1} borderStyle="single" borderColor="dim" paddingX={1}>
-        <Text dimColor>统计: 抚摸 {buddy.petCount} 次 | 喂食 {buddy.feedCount} 次 | 玩耍 {buddy.playCount} 次</Text>
+        <Text dimColor>统计: 抚摸 {buddy.stats.petCount} 次 | 喂食 {buddy.stats.feedCount} 次 | 玩耍 {buddy.stats.playCount} 次</Text>
       </Box>
 
       {/* 提示 */}
