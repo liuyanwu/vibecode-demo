@@ -405,6 +405,19 @@ const BuddyStatus = ({ onDone }: { onDone: () => void }) => {
 
   if (!buddy) return null;
 
+  // 兼容性处理：确保 stats 存在
+  if (!buddy.stats) {
+    buddy.stats = {
+      petCount: 0,
+      feedCount: 0,
+      playCount: 0,
+      totalInteractions: 0,
+      lastInteraction: Date.now(),
+      birthDate: Date.now(),
+    };
+    saveBuddyState(buddy);
+  }
+
   // 计算进度条
   const renderBar = (value: number) => {
     const filled = Math.floor(value / 10);
