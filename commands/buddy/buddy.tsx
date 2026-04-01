@@ -538,14 +538,25 @@ const BuddyStatus = ({ onDone }: { onDone: () => void }) => {
       {/* 提示 */}
       {showTip && (
         <Box marginTop={1} justifyContent="center">
-          <Text dimColor>可用命令: </Text>
-          <Text color="cyan">/buddy pet</Text>
-          <Text dimColor> | </Text>
-          <Text color="cyan">/buddy feed</Text>
-          <Text dimColor> | </Text>
-          <Text color="cyan">/buddy play</Text>
-          <Text dimColor> | </Text>
-          <Text color="cyan">/buddy sleep</Text>
+          {buddy.isSleeping ? (
+            <>
+              <Text color="yellow">{buddy.name} 正在睡觉 💤</Text>
+              <Text dimColor> | </Text>
+              <Text color="cyan">/buddy wake</Text>
+              <Text dimColor> 叫醒它</Text>
+            </>
+          ) : (
+            <>
+              <Text dimColor>可用命令: </Text>
+              <Text color="cyan">/buddy pet</Text>
+              <Text dimColor> | </Text>
+              <Text color="cyan">/buddy feed</Text>
+              <Text dimColor> | </Text>
+              <Text color="cyan">/buddy play</Text>
+              <Text dimColor> | </Text>
+              <Text color="cyan">/buddy sleep</Text>
+            </>
+          )}
         </Box>
       )}
 
