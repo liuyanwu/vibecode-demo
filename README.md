@@ -232,3 +232,87 @@ This repository does not claim any ownership or license over the code. It is sha
 **If you are Anthropic or represent Anthropic:** Please see the [DMCA / Takedown](#dmca--takedown) section above. This repository will promptly comply with valid takedown requests.
 
 **If you are a user of this code:** Do not use this code for commercial purposes, to build competing products, or in any way that infringes on Anthropic's intellectual property rights. This code is for reading, learning, and research only.
+
+---
+
+## Vibecode vs Claude Code 功能差距分析
+
+本项目 **Vibecode** 是基于 Claude Code 源码的社区分支版本。以下是主要功能差距：
+
+### 1. 品牌与身份
+
+| 方面 | Claude Code (官方) | Vibecode (此项目) |
+|------|-------------------|-------------------|
+| 产品名称 | Claude Code | Vibecode |
+| 开发公司 | Anthropic | 社区/第三方 |
+| 系统提示词 | "You are Claude Code, Anthropic's official CLI for Claude" | 需要修改为自定义品牌 |
+
+**关键文件：** `constants/system.ts` (第10行)
+```typescript
+const DEFAULT_PREFIX = `You are Claude Code, Anthropic's official CLI for Claude.`
+```
+
+### 2. API 与模型支持
+
+| 功能 | Claude Code | Vibecode |
+|------|-------------|----------|
+| 默认 API | Anthropic Claude API | 已配置为 Qwen (阿里云 DashScope) |
+| 模型选择 | Claude 系列模型 | Qwen 3.5 Plus / Max |
+| API 端点 | api.anthropic.com | dashscope.aliyuncs.com |
+
+**配置：** 参见 `QWEN_CONFIG.md` 了解 Qwen API 配置方法
+
+### 3. 功能完整性对比
+
+#### ✅ 已具备的核心功能
+- **工具系统**：Bash、文件读写、Glob、Grep、Agent、Web 搜索等 (`tools/`)
+- **终端 UI**：基于 Ink 的 React 终端渲染 (`ink/`)
+- **命令系统**：80+ 斜杠命令 (`commands/`)
+- **权限系统**：工具执行权限控制 (`utils/permissions/`)
+- **Agent 系统**：子代理任务执行 (`tools/AgentTool/`)
+- **MCP 支持**：Model Context Protocol (`services/mcp/`)
+- **LSP 集成**：语言服务器协议 (`services/lsp/`)
+- **持久化内存**：跨会话记忆 (`memdir/`)
+- **插件系统**：扩展功能 (`plugins/`)
+- **Vim 模式**：完整 Vim 模拟 (`vim/`)
+
+#### ⚠️ 可能缺失或受限的功能
+
+| 功能 | 状态 | 说明 |
+|------|------|------|
+| **Analytics/Telemetry** | ⚠️ 受限 | 官方 Datadog/1P 事件日志 (`services/analytics/index.ts`) |
+| **GrowthBook 功能开关** | ⚠️ 受限 | 动态配置系统 |
+| **OAuth 认证** | ⚠️ 可能受限 | 官方 Claude 账户集成 (`services/oauth/`) |
+| **远程桥接** | ⚠️ 可能受限 | Bridge 模式用于桌面/Web 应用 (`bridge/`) |
+| **Vertex AI 支持** | ⚠️ 受限 | Google Cloud 集成 |
+| **AWS Bedrock** | ⚠️ 受限 | AWS 模型访问 |
+| **自动更新** | ⚠️ 受限 | 官方更新通道 (`utils/autoUpdater.ts`) |
+| **团队/企业功能** | ⚠️ 受限 | 多用户协作 |
+| **语音模式** | ⚠️ 可选 | 功能开关控制 |
+| **Proactive/Kairos** | ⚠️ 可选 | 实验性功能 |
+
+### 4. 关键修改建议
+
+如果要完全独立运行，建议进行以下修改：
+
+1. **修改系统提示词** (`constants/system.ts`)
+   - 修改 `DEFAULT_PREFIX` 和其他前缀文本
+
+2. **配置 API** (`QWEN_CONFIG.md`)
+   - 已配置支持 Qwen API 而非 Anthropic
+
+3. **Analytics** (`services/analytics/index.ts`)
+   - 官方事件日志系统可能需要替换或禁用
+
+4. **功能开关** (`commands.ts`)
+   - 使用 `feature()` 函数控制实验性功能
+   - 部分功能需要 `USER_TYPE === 'ant'` 检查
+
+### 总结
+
+**Vibecode 本质上是一个 rebranded 的 Claude Code 源码分支**，主要区别在于：
+
+1. ✅ **核心功能完整**：工具系统、UI、Agent、MCP 等全部可用
+2. ⚠️ **后端服务受限**：官方遥测、认证、更新通道需要替换
+3. ✅ **模型可替换**：已配置支持 Qwen 等第三方模型
+4. ⚠️ **品牌需修改**：系统提示词和标识仍显示 "Claude Code"
