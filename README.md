@@ -24,7 +24,7 @@ Vibecode 是一个基于 Claude Code 源码的社区分支版本，支持多种 
 
 ### 界面预览
 
-![Buddy 系统截图](./docs/images/buddy-screenshot.png)
+![Buddy 系统截图](./docs/images/image.png)
 
 > 使用 `/buddy` 命令召唤你的皮卡丘伙伴！
 

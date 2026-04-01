@@ -24,7 +24,7 @@ Vibecode is a community fork of Claude Code, supporting multiple AI models (Qwen
 
 ### Preview
 
-![Buddy System Screenshot](./docs/images/buddy-screenshot.png)
+![Buddy System Screenshot](./docs/images/image.png)
 
 > Summon your Pikachu companion with `/buddy` command!
 
