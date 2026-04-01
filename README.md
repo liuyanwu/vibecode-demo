@@ -66,7 +66,15 @@ bun install
 
 ### 4. 配置 API
 
-创建 `.env` 文件并配置你的 API Key：
+**⚠️ 使用前必须配置 API Key！**
+
+1. 复制 `.env.example` 为 `.env`：
+
+```bash
+cp .env.example .env
+```
+
+2. 编辑 `.env` 文件，配置你的 API Key：
 
 ```bash
 # 使用 Qwen (推荐)
@@ -80,6 +88,8 @@ ANTHROPIC_MODEL=qwen3.5-plus
 ```
 
 获取 API Key：[阿里云 DashScope](https://dashscope.console.aliyun.com/)
+
+> **注意**：`.env` 文件包含敏感信息，已添加到 `.gitignore`，不会被提交到 Git。
 
 ### 5. 运行
 
