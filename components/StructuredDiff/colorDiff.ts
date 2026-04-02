@@ -1,4 +1,4 @@
-import {
+﻿import {
   ColorDiff,
   ColorFile,
   getSyntaxTheme as nativeGetSyntaxTheme,
@@ -6,18 +6,29 @@ import {
 } from 'color-diff-napi'
 import { isEnvDefinedFalsy } from '../../utils/envUtils.js'
 
-export type ColorModuleUnavailableReason = 'env'
+export type ColorModuleUnavailableReason = 'env' | 'module'
+
+/**
+ * Check if ColorDiff is a valid constructor (not a reserved placeholder module)
+ */
+function isColorDiffValid(): boolean {
+  // The reserved color-diff-napi package exports an object instead of a class
+  // Check if ColorDiff is actually a constructor function
+  return typeof ColorDiff === 'function' &&
+         Object.keys(ColorDiff).length === 0
+}
 
 /**
  * Returns a static reason why the color-diff module is unavailable, or null if available.
- * 'env' = disabled via CLAUDE_CODE_SYNTAX_HIGHLIGHT
- *
- * The TS port of color-diff works in all build modes, so the only way to
- * disable it is via the env var.
+ * 'env' = disabled via VIBECODE_SYNTAX_HIGHLIGHT
+ * 'module' = color-diff-napi is a reserved placeholder package
  */
 export function getColorModuleUnavailableReason(): ColorModuleUnavailableReason | null {
-  if (isEnvDefinedFalsy(process.env.CLAUDE_CODE_SYNTAX_HIGHLIGHT)) {
+  if (isEnvDefinedFalsy(process.env.VIBECODE_SYNTAX_HIGHLIGHT)) {
     return 'env'
+  }
+  if (!isColorDiffValid()) {
+    return 'module'
   }
   return null
 }
