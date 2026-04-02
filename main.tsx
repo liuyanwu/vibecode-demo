@@ -802,7 +802,9 @@ export async function main(): Promise<void> {
   const hasPrintFlag = cliArgs.includes('-p') || cliArgs.includes('--print');
   const hasInitOnlyFlag = cliArgs.includes('--init-only');
   const hasSdkUrl = cliArgs.some(arg => arg.startsWith('--sdk-url'));
-  const isNonInteractive = hasPrintFlag || hasInitOnlyFlag || hasSdkUrl || !process.stdout.isTTY;
+  // Force interactive mode if VIBECODE_FORCE_INTERACTIVE is set (useful for Bun on Windows)
+  const forceInteractive = isEnvTruthy(process.env.VIBECODE_FORCE_INTERACTIVE);
+  const isNonInteractive = !forceInteractive && (hasPrintFlag || hasInitOnlyFlag || hasSdkUrl || !process.stdout.isTTY);
 
   // Stop capturing early input for non-interactive modes
   if (isNonInteractive) {
