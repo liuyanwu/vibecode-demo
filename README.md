@@ -87,7 +87,7 @@ cp .env.example .env
 
 ```bash
 # 使用 Qwen (推荐)
-ANTHROPIC_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+ANTHROPIC_BASE_URL=https://coding.dashscope.aliyuncs.com/apps/anthropic
 ANTHROPIC_API_KEY=你的_API_Key
 ANTHROPIC_MODEL=qwen3.5-plus
 
