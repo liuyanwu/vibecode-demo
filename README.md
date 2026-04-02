@@ -50,99 +50,188 @@ Vibecode 是一个基于 Claude Code 源码的社区分支版本，支持多种 
 
 ## 快速开始
 
-### 1. 安装 Bun
+### 步骤 1：安装 Bun
 
+Bun 是极速的 JavaScript 运行时和包管理器，替代 Node.js 和 npm。
+
+**macOS / Linux:**
 ```bash
-# macOS/Linux
 curl -fsSL https://bun.sh/install | bash
+```
 
-# Windows
+**Windows:**
+```powershell
 powershell -c "irm bun.sh/install.ps1 | iex"
 ```
 
-### 2. 克隆项目
-
+**验证安装:**
 ```bash
-git clone <repository-url>
-cd vibecode
+bun --version
 ```
 
-### 3. 安装依赖
+---
+
+### 步骤 2：克隆项目
+
+```bash
+# 克隆仓库
+git clone https://github.com/liuyanwu/vibecode-demo.git
+
+# 进入项目目录
+cd vibecode-demo
+```
+
+---
+
+### 步骤 3：安装依赖
 
 ```bash
 bun install
 ```
 
-### 4. 配置 API
+这会安装所有必需的依赖包，通常需要几秒钟。
 
-**⚠️ 使用前必须配置 API Key！**
+---
 
-1. 复制 `.env.example` 为 `.env`：
+### 步骤 4：配置 API Key
 
+**⚠️ 使用前必须配置 API Key，否则无法运行！**
+
+1. **复制环境变量模板:**
+
+   macOS/Linux:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Windows PowerShell:
+   ```powershell
+   Copy-Item .env.example .env
+   ```
+   
+   Windows CMD:
+   ```cmd
+   copy .env.example .env
+   ```
+
+2. **编辑 `.env` 文件**，填入你的 API Key：
+
+   ```bash
+   # 阿里云 DashScope Qwen API (推荐)
+   ANTHROPIC_BASE_URL=https://coding.dashscope.aliyuncs.com/apps/anthropic
+   ANTHROPIC_API_KEY=sk-your-actual-api-key-here
+   ANTHROPIC_MODEL=qwen3.5-plus
+   ```
+
+3. **获取 API Key:**
+   
+   访问 [阿里云 DashScope 控制台](https://dashscope.console.aliyun.com/) 注册账号并创建 API Key。
+
+> **安全提示**: `.env` 文件已添加到 `.gitignore`，不会被提交到 Git，请妥善保管。
+
+---
+
+### 步骤 5：运行 VibeCode
+
+**临时运行（测试用）:**
 ```bash
-cp .env.example .env
-```
-
-2. 编辑 `.env` 文件，配置你的 API Key：
-
-```bash
-# 使用 Qwen (推荐)
-ANTHROPIC_BASE_URL=https://coding.dashscope.aliyuncs.com/apps/anthropic
-ANTHROPIC_API_KEY=你的_API_Key
-ANTHROPIC_MODEL=qwen3.5-plus
-
-# 或使用 Claude API
-# ANTHROPIC_API_KEY=你的_API_Key
-# ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
-```
-
-获取 API Key：[阿里云 DashScope](https://dashscope.console.aliyun.com/)
-
-> **注意**：`.env` 文件包含敏感信息，已添加到 `.gitignore`，不会被提交到 Git。
-
-### 5. 运行
-
-```bash
-# 开发模式
-bun run dev
-
-# 或使用 .env 配置
 bun run --env-file=.env main.tsx
 ```
 
-### 6. 安装为全局命令
-
-#### Windows
-
-```powershell
-# 创建批处理文件
-New-Item -ItemType File -Path "$env:USERPROFILE\bin\vibecode.cmd" -Force
-Set-Content -Path "$env:USERPROFILE\bin\vibecode.cmd" -Value '@echo off
-bun run --env-file="%~dp0..\vibecode\.env" "%~dp0..\vibecode\main.tsx" %*'
-
-# 添加到 PATH
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:USERPROFILE\bin", "User")
+**开发模式（热重载）:**
+```bash
+bun run dev
 ```
 
-#### macOS / Linux
-
+**使用已有 API 配置（无需重复指定 .env）:**
 ```bash
-# 创建启动脚本
-mkdir -p ~/.local/bin
-cat > ~/.local/bin/vibecode << 'EOF'
-#!/bin/bash
-cd /path/to/vibecode
-bun run --env-file=.env main.tsx "$@"
-EOF
-chmod +x ~/.local/bin/vibecode
-
-# 确保 ~/.local/bin 在 PATH 中
-export PATH="$HOME/.local/bin:$PATH"
+# 如果已将 .env 移动到 ~/.vibecode/.env
+bun run main.tsx
 ```
 
-安装完成后，可以在任意目录使用：
+---
+
+### 步骤 6：安装为全局命令（推荐）
+
+安装后，可在任意目录使用 `vibecode` 命令。
+
+#### Windows 全局安装
+
+1. **创建 bin 目录**（如不存在）:
+   ```powershell
+   New-Item -ItemType Directory -Path "$env:USERPROFILE\bin" -Force
+   ```
+
+2. **创建启动脚本** `vibecode.cmd`:
+   ```powershell
+   $script = @"
+   @echo off
+   setlocal
+   cd /d "%USERPROFILE%\vibecode-demo"
+   bun run --env-file=.env main.tsx %*
+   "@
+   Set-Content -Path "$env:USERPROFILE\bin\vibecode.cmd" -Value $script
+   ```
+
+3. **添加环境变量到 PATH**:
+   ```powershell
+   $currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
+   $newPath = "$currentPath;$env:USERPROFILE\bin"
+   [Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+   ```
+
+4. **重启终端**使 PATH 生效
+
+#### macOS / Linux 全局安装
+
+1. **创建本地 bin 目录**:
+   ```bash
+   mkdir -p ~/.local/bin
+   ```
+
+2. **创建启动脚本** (修改 `/path/to/vibecode-demo` 为实际路径):
+   ```bash
+   cat > ~/.local/bin/vibecode << 'EOF'
+   #!/bin/bash
+   cd /path/to/vibecode-demo
+   bun run --env-file=.env main.tsx "$@"
+   EOF
+   ```
+
+3. **赋予执行权限**:
+   ```bash
+   chmod +x ~/.local/bin/vibecode
+   ```
+
+4. **添加 ~/.local/bin 到 PATH**:
+   
+   编辑 `~/.bashrc` 或 `~/.zshrc`:
+   ```bash
+   echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+   source ~/.bashrc
+   ```
+   
+   macOS 用户：
+   ```bash
+   echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+   source ~/.zshrc
+   ```
+
+---
+
+### 验证全局安装
+
+重启终端后，在任意目录运行：
+
 ```bash
+# 检查命令是否可用
+vibecode --version
+
+# 启动 VibeCode
 vibecode
+
+# 直接提问（非交互模式）
+vibecode --print "帮我写一个快速排序"
 ```
 
 ---
