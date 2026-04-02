@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto'
+﻿import { randomUUID } from 'crypto'
 import { useCallback, useEffect, useRef } from 'react'
 import { useInterval } from 'usehooks-ts'
 import type { ToolUseConfirm } from '../components/permissions/PermissionRequest.js'
@@ -74,7 +74,7 @@ import {
 /**
  * Get the agent name to poll for messages.
  * - In-process teammates return undefined (they use waitForNextPromptOrShutdown instead)
- * - Process-based teammates use their CLAUDE_CODE_AGENT_NAME
+ * - Process-based teammates use their VIBECODE_AGENT_NAME
  * - Team leads use their name from teamContext.teammates
  * - Standalone sessions return undefined
  */

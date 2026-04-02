@@ -1,0 +1,19 @@
+diff --git a/utils/plugins/officialMarketplaceStartupCheck.ts b/utils/plugins/officialMarketplaceStartupCheck.ts
+index d8fb2eba..74c164a7 100644
+--- a/utils/plugins/officialMarketplaceStartupCheck.ts
++++ b/utils/plugins/officialMarketplaceStartupCheck.ts
+@@ -1,4 +1,4 @@
+-/**
++﻿/**
+  * Auto-install logic for the official Anthropic marketplace.
+  *
+  * This module handles automatically installing the official marketplace
+@@ -46,7 +46,7 @@ export type OfficialMarketplaceSkipReason =
+  */
+ export function isOfficialMarketplaceAutoInstallDisabled(): boolean {
+   return isEnvTruthy(
+-    process.env.CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL,
++    process.env.VIBECODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL,
+   )
+ }
+ 

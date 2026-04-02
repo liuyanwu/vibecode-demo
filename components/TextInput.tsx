@@ -1,4 +1,4 @@
-import { feature } from 'bun:bundle';
+﻿import { feature } from 'bun:bundle';
 import chalk from 'chalk';
 import React, { useMemo, useRef } from 'react';
 import { useVoiceState } from '../context/voice.js';
@@ -38,7 +38,7 @@ export default function TextInput(props: Props): React.ReactNode {
   const [theme] = useTheme();
   const isTerminalFocused = useTerminalFocus();
   // Hoisted to mount-time — this component re-renders on every keystroke.
-  const accessibilityEnabled = useMemo(() => isEnvTruthy(process.env.CLAUDE_CODE_ACCESSIBILITY), []);
+  const accessibilityEnabled = useMemo(() => isEnvTruthy(process.env.VIBECODE_ACCESSIBILITY), []);
   const settings = useSettings();
   const reducedMotion = settings.prefersReducedMotion ?? false;
   const voiceState = feature('VOICE_MODE') ?

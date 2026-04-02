@@ -1,4 +1,4 @@
-import { feature } from 'bun:bundle';
+﻿import { feature } from 'bun:bundle';
 import { appendFileSync } from 'fs';
 import React from 'react';
 import { logEvent } from 'src/services/analytics/index.js';
@@ -316,7 +316,7 @@ export function getRenderContext(exitOnCtrlC: boolean): {
   // offline analysis by bench/repl-scroll.ts. Captures the full TUI
   // render pipeline (yoga → screen buffer → diff → optimize → stdout)
   // so perf work on any phase can be validated against real user flows.
-  const frameTimingLogPath = process.env.CLAUDE_CODE_FRAME_TIMING_LOG;
+  const frameTimingLogPath = process.env.VIBECODE_FRAME_TIMING_LOG;
   return {
     getFpsMetrics: () => fpsTracker.getMetrics(),
     stats,

@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+﻿import chalk from 'chalk'
 import { writeSync } from 'fs'
 import memoize from 'lodash-es/memoize.js'
 import { onExit } from 'signal-exit'
@@ -120,9 +120,9 @@ function cleanupTerminalModes(): void {
     // Clear tab status (OSC 21337) so a stale dot doesn't linger
     if (supportsTabStatus()) writeSync(1, wrapForMultiplexer(CLEAR_TAB_STATUS))
     // Clear terminal title so the tab doesn't show stale session info.
-    // Respect CLAUDE_CODE_DISABLE_TERMINAL_TITLE — if the user opted out of
+    // Respect VIBECODE_DISABLE_TERMINAL_TITLE — if the user opted out of
     // title changes, don't clear their existing title on exit either.
-    if (!isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_TERMINAL_TITLE)) {
+    if (!isEnvTruthy(process.env.VIBECODE_DISABLE_TERMINAL_TITLE)) {
       if (process.platform === 'win32') {
         process.title = ''
       } else {
@@ -467,7 +467,7 @@ export async function gracefulShutdown(
   }
 
   // Execute SessionEnd hooks. Bound both the per-hook default timeout and the
-  // overall execution via a single budget (CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS,
+  // overall execution via a single budget (VIBECODE_SESSIONEND_HOOKS_TIMEOUT_MS,
   // default 1.5s). hook.timeout in settings is respected up to this cap.
   try {
     await executeSessionEndHooks(reason, {

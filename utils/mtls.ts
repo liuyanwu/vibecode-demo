@@ -1,4 +1,4 @@
-import type * as https from 'https'
+﻿import type * as https from 'https'
 import { Agent as HttpsAgent } from 'https'
 import memoize from 'lodash-es/memoize.js'
 import type * as tls from 'tls'
@@ -27,14 +27,14 @@ export const getMTLSConfig = memoize((): MTLSConfig | undefined => {
   // We don't need to manually load it - Node.js appends it to the built-in CAs automatically
 
   // Client certificate
-  if (process.env.CLAUDE_CODE_CLIENT_CERT) {
+  if (process.env.VIBECODE_CLIENT_CERT) {
     try {
       config.cert = getFsImplementation().readFileSync(
-        process.env.CLAUDE_CODE_CLIENT_CERT,
+        process.env.VIBECODE_CLIENT_CERT,
         { encoding: 'utf8' },
       )
       logForDebugging(
-        'mTLS: Loaded client certificate from CLAUDE_CODE_CLIENT_CERT',
+        'mTLS: Loaded client certificate from VIBECODE_CLIENT_CERT',
       )
     } catch (error) {
       logForDebugging(`mTLS: Failed to load client certificate: ${error}`, {
@@ -44,13 +44,13 @@ export const getMTLSConfig = memoize((): MTLSConfig | undefined => {
   }
 
   // Client key
-  if (process.env.CLAUDE_CODE_CLIENT_KEY) {
+  if (process.env.VIBECODE_CLIENT_KEY) {
     try {
       config.key = getFsImplementation().readFileSync(
-        process.env.CLAUDE_CODE_CLIENT_KEY,
+        process.env.VIBECODE_CLIENT_KEY,
         { encoding: 'utf8' },
       )
-      logForDebugging('mTLS: Loaded client key from CLAUDE_CODE_CLIENT_KEY')
+      logForDebugging('mTLS: Loaded client key from VIBECODE_CLIENT_KEY')
     } catch (error) {
       logForDebugging(`mTLS: Failed to load client key: ${error}`, {
         level: 'error',
@@ -59,8 +59,8 @@ export const getMTLSConfig = memoize((): MTLSConfig | undefined => {
   }
 
   // Key passphrase
-  if (process.env.CLAUDE_CODE_CLIENT_KEY_PASSPHRASE) {
-    config.passphrase = process.env.CLAUDE_CODE_CLIENT_KEY_PASSPHRASE
+  if (process.env.VIBECODE_CLIENT_KEY_PASSPHRASE) {
+    config.passphrase = process.env.VIBECODE_CLIENT_KEY_PASSPHRASE
     logForDebugging('mTLS: Using client key passphrase')
   }
 

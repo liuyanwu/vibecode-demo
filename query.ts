@@ -1,4 +1,4 @@
-// biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
+﻿// biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import type {
   ToolResultBlockParam,
   ToolUseBlock,
@@ -1199,7 +1199,7 @@ async function* queryLoop(
         if (
           capEnabled &&
           maxOutputTokensOverride === undefined &&
-          !process.env.CLAUDE_CODE_MAX_OUTPUT_TOKENS
+          !process.env.VIBECODE_MAX_OUTPUT_TOKENS
         ) {
           logEvent('tengu_max_tokens_escalate', {
             escalatedTo: ESCALATED_MAX_TOKENS,

@@ -1,4 +1,4 @@
-import { tmpdir } from 'os'
+﻿import { tmpdir } from 'os'
 import { join } from 'path'
 import { join as posixJoin } from 'path/posix'
 import { getSessionEnvVars } from '../sessionEnvVars.js'
@@ -115,7 +115,7 @@ export function createPowerShellProvider(shellPath: string): ShellProvider {
       if (currentSandboxTmpDir) {
         // PowerShell on Linux/macOS honors TMPDIR for [System.IO.Path]::GetTempPath()
         env.TMPDIR = currentSandboxTmpDir
-        env.CLAUDE_CODE_TMPDIR = currentSandboxTmpDir
+        env.VIBECODE_TMPDIR = currentSandboxTmpDir
       }
       return env
     },

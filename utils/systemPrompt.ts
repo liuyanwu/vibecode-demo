@@ -1,4 +1,4 @@
-import { feature } from 'bun:bundle'
+﻿import { feature } from 'bun:bundle'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
@@ -61,7 +61,7 @@ export function buildEffectiveSystemPrompt({
   // dependency issues during test module loading.
   if (
     feature('COORDINATOR_MODE') &&
-    isEnvTruthy(process.env.CLAUDE_CODE_COORDINATOR_MODE) &&
+    isEnvTruthy(process.env.VIBECODE_COORDINATOR_MODE) &&
     !mainThreadAgentDefinition
   ) {
     // Lazy require to avoid circular dependency at module load time

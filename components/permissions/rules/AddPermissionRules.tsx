@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { useCallback } from 'react';
 import { Select } from '../../../components/CustomSelect/select.js';
@@ -32,7 +32,7 @@ export function optionForPermissionSaveDestination(saveDestination: EditableSett
     case 'userSettings':
       return {
         label: 'User settings',
-        description: `Saved in at ~/.claude/settings.json`,
+        description: `Saved in at ~/.vibecode/settings.json`,
         value: saveDestination
       };
   }

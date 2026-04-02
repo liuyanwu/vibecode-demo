@@ -1,4 +1,4 @@
-import { dirname } from 'path'
+﻿import { dirname } from 'path'
 import { getFsImplementation } from './fsOperations.js'
 import { jsonStringify } from './slowOperations.js'
 
@@ -57,7 +57,7 @@ export function logForDiagnosticsNoPII(
 }
 
 function getDiagnosticLogFile(): string | undefined {
-  return process.env.CLAUDE_CODE_DIAGNOSTICS_FILE
+  return process.env.VIBECODE_DIAGNOSTICS_FILE
 }
 
 /**

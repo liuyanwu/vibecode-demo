@@ -1,4 +1,4 @@
-import axios from 'axios'
+﻿import axios from 'axios'
 import { readFile, stat } from 'fs/promises'
 import type { Message } from '../../types/message.js'
 import { checkAndRefreshOAuthTokenIfNeeded } from '../../utils/auth.js'
@@ -85,7 +85,7 @@ export async function submitTranscriptShare(
     }
 
     const response = await axios.post(
-      'https://api.anthropic.com/api/claude_code_shared_session_transcripts',
+      'https://api.anthropic.com/api/VIBECODE_shared_session_transcripts',
       { content, appearance_id: appearanceId },
       {
         headers,

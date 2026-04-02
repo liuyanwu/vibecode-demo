@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+﻿import chalk from 'chalk'
 import { logEvent } from 'src/services/analytics/index.js'
 import {
   getLatestVersion,
@@ -386,7 +386,7 @@ export async function update() {
       if (useLocalUpdate) {
         process.stderr.write('Try manually updating with:\n')
         process.stderr.write(
-          `  cd ~/.claude/local && npm update ${MACRO.PACKAGE_URL}\n`,
+          `  cd ~/.vibecode/local && npm update ${MACRO.PACKAGE_URL}\n`,
         )
       } else {
         process.stderr.write('Try running with sudo or fix npm permissions\n')
@@ -401,7 +401,7 @@ export async function update() {
       if (useLocalUpdate) {
         process.stderr.write('Try manually updating with:\n')
         process.stderr.write(
-          `  cd ~/.claude/local && npm update ${MACRO.PACKAGE_URL}\n`,
+          `  cd ~/.vibecode/local && npm update ${MACRO.PACKAGE_URL}\n`,
         )
       } else {
         process.stderr.write(

@@ -1,4 +1,4 @@
-import type { StdoutMessage } from 'src/entrypoints/sdk/controlTypes.js'
+﻿import type { StdoutMessage } from 'src/entrypoints/sdk/controlTypes.js'
 import { CCRClient } from '../cli/transports/ccrClient.js'
 import type { HybridTransport } from '../cli/transports/HybridTransport.js'
 import { SSETransport } from '../cli/transports/SSETransport.js'
@@ -148,7 +148,7 @@ export async function createV2ReplTransport(opts: {
   /**
    * Per-instance auth header source. When provided, CCRClient + SSETransport
    * read auth from this closure instead of the process-wide
-   * CLAUDE_CODE_SESSION_ACCESS_TOKEN env var. Required for callers managing
+   * VIBECODE_SESSION_ACCESS_TOKEN env var. Required for callers managing
    * multiple concurrent sessions — the env-var path stomps across sessions.
    * When omitted, falls back to the env var (single-session callers).
    */

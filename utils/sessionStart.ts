@@ -1,4 +1,4 @@
-import { getMainThreadAgentType } from '../bootstrap/state.js'
+﻿import { getMainThreadAgentType } from '../bootstrap/state.js'
 import type { HookResultMessage } from '../types/message.js'
 import { createAttachmentMessage } from './attachments.js'
 import { logForDebugging } from './debug.js'
@@ -101,7 +101,7 @@ export async function processSessionStartHooks(
         errorMessage.includes('EPERM')
       ) {
         userGuidance =
-          'This appears to be a permissions issue. Check file permissions on ~/.claude/plugins/'
+          'This appears to be a permissions issue. Check file permissions on ~/.vibecode/plugins/'
       } else if (
         errorMessage.includes('Invalid') ||
         errorMessage.includes('parse') ||
@@ -109,7 +109,7 @@ export async function processSessionStartHooks(
         errorMessage.includes('schema')
       ) {
         userGuidance =
-          'This appears to be a configuration issue. Check your plugin settings in .claude/settings.json'
+          'This appears to be a configuration issue. Check your plugin settings in .vibecode/settings.json'
       } else {
         userGuidance =
           'Please fix the plugin configuration or remove problematic plugins from your settings.'
@@ -122,7 +122,7 @@ export async function processSessionStartHooks(
       )
 
       // Continue execution - plugin hooks won't be available, but project-level hooks
-      // from .claude/settings.json (loaded via captureHooksConfigSnapshot) will still work
+      // from .vibecode/settings.json (loaded via captureHooksConfigSnapshot) will still work
     }
   }
 

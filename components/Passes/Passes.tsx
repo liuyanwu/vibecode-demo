@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import type { CommandResultDisplay } from '../../commands.js';
 import { TEARDROP_ASTERISK } from '../../constants/figures.js';
@@ -71,7 +71,7 @@ export function Passes({
         setReferrerReward(eligibilityData.referrer_reward);
 
         // Use the campaign returned from eligibility for redemptions
-        const campaign = eligibilityData.referral_code_details?.campaign ?? 'claude_code_guest_pass';
+        const campaign = eligibilityData.referral_code_details?.campaign ?? 'VIBECODE_guest_pass';
 
         // Fetch redemptions data
         let redemptionsData: ReferralRedemptionsResponse;

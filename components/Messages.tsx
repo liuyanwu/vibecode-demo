@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import chalk from 'chalk';
 import type { UUID } from 'crypto';
@@ -458,7 +458,7 @@ const MessagesImpl = ({
   }), [streamingToolUsesWithoutInProgress]);
   const isTranscriptMode = screen === 'transcript';
   // Hoisted to mount-time — this component re-renders on every scroll.
-  const disableVirtualScroll = useMemo(() => isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_VIRTUAL_SCROLL), []);
+  const disableVirtualScroll = useMemo(() => isEnvTruthy(process.env.VIBECODE_DISABLE_VIRTUAL_SCROLL), []);
   // Virtual scroll replaces the transcript cap: everything is scrollable and
   // memory is bounded by the mounted-item count, not the total. scrollRef is
   // only passed when isFullscreenEnvEnabled() is true (REPL.tsx gates it),

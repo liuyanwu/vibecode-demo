@@ -1,4 +1,4 @@
-import { getAllowedSettingSources } from '../../bootstrap/state.js'
+﻿import { getAllowedSettingSources } from '../../bootstrap/state.js'
 
 /**
  * All possible sources where settings can come from
@@ -198,5 +198,5 @@ export const SOURCES = [
  * The JSON Schema URL for Claude Code settings
  * You can edit the contents at https://github.com/SchemaStore/schemastore/blob/master/src/schemas/json/claude-code-settings.json
  */
-export const CLAUDE_CODE_SETTINGS_SCHEMA_URL =
+export const VIBECODE_SETTINGS_SCHEMA_URL =
   'https://json.schemastore.org/claude-code-settings.json'

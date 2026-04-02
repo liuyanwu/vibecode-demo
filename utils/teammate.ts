@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Teammate utilities for agent swarm coordination
  *
  * These helpers identify whether this Claude Code instance is running as a
@@ -152,7 +152,7 @@ export function isPlanModeRequired(): boolean {
   if (dynamicTeamContext !== null) {
     return dynamicTeamContext.planModeRequired
   }
-  return isEnvTruthy(process.env.CLAUDE_CODE_PLAN_MODE_REQUIRED)
+  return isEnvTruthy(process.env.VIBECODE_PLAN_MODE_REQUIRED)
 }
 
 /**
@@ -161,8 +161,8 @@ export function isPlanModeRequired(): boolean {
  * A session is considered a team lead if:
  * 1. A team context exists with a leadAgentId, AND
  * 2. Either:
- *    - Our CLAUDE_CODE_AGENT_ID matches the leadAgentId, OR
- *    - We have no CLAUDE_CODE_AGENT_ID set (backwards compat: the original
+ *    - Our VIBECODE_AGENT_ID matches the leadAgentId, OR
+ *    - We have no VIBECODE_AGENT_ID set (backwards compat: the original
  *      session that created the team before agent IDs were standardized)
  *
  * @param teamContext - The team context from AppState, if any

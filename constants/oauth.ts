@@ -1,4 +1,4 @@
-import { isEnvTruthy } from 'src/utils/envUtils.js'
+﻿import { isEnvTruthy } from 'src/utils/envUtils.js'
 
 // Default to prod config, override with test/staging if enabled
 type OauthConfigType = 'prod' | 'staging' | 'local'
@@ -16,7 +16,7 @@ function getOauthConfigType(): OauthConfigType {
 }
 
 export function fileSuffixForOauthConfig(): string {
-  if (process.env.CLAUDE_CODE_CUSTOM_OAUTH_URL) {
+  if (process.env.VIBECODE_CUSTOM_OAUTH_URL) {
     return '-custom-oauth'
   }
   switch (getOauthConfigType()) {
@@ -147,13 +147,13 @@ const STAGING_OAUTH_CONFIG =
 // scripts/claude-localhost override if your layout differs.
 function getLocalOauthConfig(): OauthConfig {
   const api =
-    process.env.CLAUDE_LOCAL_OAUTH_API_BASE?.replace(/\/$/, '') ??
+    process.env.VIBECODE_LOCAL_OAUTH_API_BASE?.replace(/\/$/, '') ??
     'http://localhost:8000'
   const apps =
-    process.env.CLAUDE_LOCAL_OAUTH_APPS_BASE?.replace(/\/$/, '') ??
+    process.env.VIBECODE_LOCAL_OAUTH_APPS_BASE?.replace(/\/$/, '') ??
     'http://localhost:4000'
   const consoleBase =
-    process.env.CLAUDE_LOCAL_OAUTH_CONSOLE_BASE?.replace(/\/$/, '') ??
+    process.env.VIBECODE_LOCAL_OAUTH_CONSOLE_BASE?.replace(/\/$/, '') ??
     'http://localhost:3000'
   return {
     BASE_API_URL: api,
@@ -173,7 +173,7 @@ function getLocalOauthConfig(): OauthConfig {
   }
 }
 
-// Allowed base URLs for CLAUDE_CODE_CUSTOM_OAUTH_URL override.
+// Allowed base URLs for VIBECODE_CUSTOM_OAUTH_URL override.
 // Only FedStart/PubSec deployments are permitted to prevent OAuth tokens
 // from being sent to arbitrary endpoints.
 const ALLOWED_OAUTH_BASE_URLS = [
@@ -197,12 +197,12 @@ export function getOauthConfig(): OauthConfig {
 
   // Allow overriding all OAuth URLs to point to an approved FedStart deployment.
   // Only allowlisted base URLs are accepted to prevent credential leakage.
-  const oauthBaseUrl = process.env.CLAUDE_CODE_CUSTOM_OAUTH_URL
+  const oauthBaseUrl = process.env.VIBECODE_CUSTOM_OAUTH_URL
   if (oauthBaseUrl) {
     const base = oauthBaseUrl.replace(/\/$/, '')
     if (!ALLOWED_OAUTH_BASE_URLS.includes(base)) {
       throw new Error(
-        'CLAUDE_CODE_CUSTOM_OAUTH_URL is not an approved endpoint.',
+        'VIBECODE_CUSTOM_OAUTH_URL is not an approved endpoint.',
       )
     }
     config = {
@@ -222,7 +222,7 @@ export function getOauthConfig(): OauthConfig {
   }
 
   // Allow CLIENT_ID override via environment variable (e.g., for Xcode integration)
-  const clientIdOverride = process.env.CLAUDE_CODE_OAUTH_CLIENT_ID
+  const clientIdOverride = process.env.VIBECODE_OAUTH_CLIENT_ID
   if (clientIdOverride) {
     config = {
       ...config,

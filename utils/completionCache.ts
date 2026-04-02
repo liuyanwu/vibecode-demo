@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+﻿import chalk from 'chalk'
 import { mkdir, readFile, writeFile } from 'fs/promises'
 import { homedir } from 'os'
 import { dirname, join } from 'path'
@@ -24,7 +24,7 @@ type ShellInfo = {
 function detectShell(): ShellInfo | null {
   const shell = process.env.SHELL || ''
   const home = homedir()
-  const claudeDir = join(home, '.claude')
+  const claudeDir = join(home, '.vibecode')
 
   if (shell.endsWith('/zsh') || shell.endsWith('/zsh.exe')) {
     const cacheFile = join(claudeDir, 'completion.zsh')
@@ -134,7 +134,7 @@ export async function setupShellCompletion(theme: ThemeName): Promise<string> {
 }
 
 /**
- * Regenerate cached shell completion scripts in ~/.claude/.
+ * Regenerate cached shell completion scripts in ~/.vibecode/.
  * Called after `claude update` so completions stay in sync with the new binary.
  */
 export async function regenerateCompletionCache(): Promise<void> {

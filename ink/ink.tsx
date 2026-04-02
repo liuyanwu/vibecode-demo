@@ -1,4 +1,4 @@
-import autoBind from 'auto-bind';
+﻿import autoBind from 'auto-bind';
 import { closeSync, constants as fsConstants, openSync, readSync, writeSync } from 'fs';
 import noop from 'lodash-es/noop.js';
 import throttle from 'lodash-es/throttle.js';
@@ -397,7 +397,7 @@ export default class Ink {
     '\x1b[H' + (
     // cursor home
     this.altScreenMouseTracking ? ENABLE_MOUSE_TRACKING : '') + (
-    // re-enable mouse (skip if CLAUDE_CODE_DISABLE_MOUSE)
+    // re-enable mouse (skip if VIBECODE_DISABLE_MOUSE)
     this.altScreenActive ? '' : '\x1b[?1049l') +
     // exit alt (non-fullscreen only)
     '\x1b[?25l' // hide cursor (Ink manages)

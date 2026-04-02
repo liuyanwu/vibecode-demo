@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Settings Sync Types
  *
  * Zod schemas and types for the user settings sync API.
@@ -59,9 +59,9 @@ export type SettingsSyncUploadResult = {
  * Keys used for sync entries
  */
 export const SYNC_KEYS = {
-  USER_SETTINGS: '~/.claude/settings.json',
-  USER_MEMORY: '~/.claude/CLAUDE.md',
+  USER_SETTINGS: '~/.vibecode/settings.json',
+  USER_MEMORY: '~/.vibecode/CLAUDE.md',
   projectSettings: (projectId: string) =>
-    `projects/${projectId}/.claude/settings.local.json`,
+    `projects/${projectId}/.vibecode/settings.local.json`,
   projectMemory: (projectId: string) => `projects/${projectId}/CLAUDE.local.md`,
 } as const

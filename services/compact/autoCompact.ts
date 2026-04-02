@@ -1,4 +1,4 @@
-import { feature } from 'bun:bundle'
+﻿import { feature } from 'bun:bundle'
 import { markPostCompaction } from 'src/bootstrap/state.js'
 import { getSdkBetas } from '../../bootstrap/state.js'
 import type { QuerySource } from '../../constants/querySource.js'
@@ -37,7 +37,7 @@ export function getEffectiveContextWindowSize(model: string): number {
   )
   let contextWindow = getContextWindowForModel(model, getSdkBetas())
 
-  const autoCompactWindow = process.env.CLAUDE_CODE_AUTO_COMPACT_WINDOW
+  const autoCompactWindow = process.env.VIBECODE_AUTO_COMPACT_WINDOW
   if (autoCompactWindow) {
     const parsed = parseInt(autoCompactWindow, 10)
     if (!isNaN(parsed) && parsed > 0) {
@@ -124,7 +124,7 @@ export function calculateTokenWarningState(
     actualContextWindow - MANUAL_COMPACT_BUFFER_TOKENS
 
   // Allow override for testing
-  const blockingLimitOverride = process.env.CLAUDE_CODE_BLOCKING_LIMIT_OVERRIDE
+  const blockingLimitOverride = process.env.VIBECODE_BLOCKING_LIMIT_OVERRIDE
   const parsedOverride = blockingLimitOverride
     ? parseInt(blockingLimitOverride, 10)
     : NaN

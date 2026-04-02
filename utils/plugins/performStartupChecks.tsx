@@ -1,4 +1,4 @@
-import { performBackgroundPluginInstallations } from '../../services/plugins/PluginInstallationManager.js';
+﻿import { performBackgroundPluginInstallations } from '../../services/plugins/PluginInstallationManager.js';
 import type { AppState } from '../../state/AppState.js';
 import { checkHasTrustDialogAccepted } from '../config.js';
 import { logForDebugging } from '../debug.js';
@@ -32,7 +32,7 @@ export async function performStartupChecks(setAppState: SetAppState): Promise<vo
   try {
     logForDebugging('Starting background plugin installations');
 
-    // Register seed marketplaces (CLAUDE_CODE_PLUGIN_SEED_DIR) before diffing.
+    // Register seed marketplaces (VIBECODE_PLUGIN_SEED_DIR) before diffing.
     // Idempotent; no-op if seed not configured. Without this, background install
     // would see seed marketplaces as missing → clone → defeats seed's purpose.
     //

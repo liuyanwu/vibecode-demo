@@ -1,0 +1,36 @@
+diff --git a/utils/sandbox/sandbox-adapter.ts b/utils/sandbox/sandbox-adapter.ts
+index 31fe3830..1e9488b6 100644
+--- a/utils/sandbox/sandbox-adapter.ts
++++ b/utils/sandbox/sandbox-adapter.ts
+@@ -1,4 +1,4 @@
+-/**
++﻿/**
+  * Adapter layer that wraps @anthropic-ai/sandbox-runtime with Claude CLI-specific integrations.
+  * This file provides the bridge between the external sandbox-runtime package and Claude CLI's
+  * settings system, tool integration, and additional features.
+@@ -240,18 +240,18 @@ export function convertToSandboxRuntimeConfig(
+   const cwd = getCwdState()
+   const originalCwd = getOriginalCwd()
+   if (cwd !== originalCwd) {
+-    denyWrite.push(resolve(cwd, '.claude', 'settings.json'))
+-    denyWrite.push(resolve(cwd, '.claude', 'settings.local.json'))
++    denyWrite.push(resolve(cwd, '.vibecode', 'settings.json'))
++    denyWrite.push(resolve(cwd, '.vibecode', 'settings.local.json'))
+   }
+ 
+-  // Block writes to .claude/skills in both original and current working directories.
+-  // The sandbox-runtime's getDangerousDirectories() protects .claude/commands and
+-  // .claude/agents but not .claude/skills. Skills have the same privilege level
++  // Block writes to .vibecode/skills in both original and current working directories.
++  // The sandbox-runtime's getDangerousDirectories() protects .vibecode/commands and
++  // .vibecode/agents but not .vibecode/skills. Skills have the same privilege level
+   // (auto-discovered, auto-loaded, full Claude capabilities) so they need the
+   // same OS-level sandbox protection.
+-  denyWrite.push(resolve(originalCwd, '.claude', 'skills'))
++  denyWrite.push(resolve(originalCwd, '.vibecode', 'skills'))
+   if (cwd !== originalCwd) {
+-    denyWrite.push(resolve(cwd, '.claude', 'skills'))
++    denyWrite.push(resolve(cwd, '.vibecode', 'skills'))
+   }
+ 
+   // SECURITY: Git's is_git_directory() treats cwd as a bare repo if it has

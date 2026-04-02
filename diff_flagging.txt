@@ -1,0 +1,15 @@
+diff --git a/utils/plugins/pluginFlagging.ts b/utils/plugins/pluginFlagging.ts
+index 3a739d22..5d802c00 100644
+--- a/utils/plugins/pluginFlagging.ts
++++ b/utils/plugins/pluginFlagging.ts
+@@ -1,8 +1,8 @@
+-/**
++﻿/**
+  * Flagged plugin tracking utilities
+  *
+  * Tracks plugins that were auto-removed because they were delisted from
+- * their marketplace. Data is stored in ~/.claude/plugins/flagged-plugins.json.
++ * their marketplace. Data is stored in ~/.vibecode/plugins/flagged-plugins.json.
+  * Flagged plugins appear in a "Flagged" section in /plugins until the user
+  * dismisses them.
+  *

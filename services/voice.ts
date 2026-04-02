@@ -1,4 +1,4 @@
-// Voice service: audio recording for push-to-talk voice input.
+﻿// Voice service: audio recording for push-to-talk voice input.
 //
 // Recording uses native audio capture (cpal) on macOS, Linux, and Windows
 // for in-process mic access. Falls back to SoX `rec` or arecord (ALSA)
@@ -258,7 +258,7 @@ export async function requestMicrophonePermission(): Promise<boolean> {
 
 export async function checkRecordingAvailability(): Promise<RecordingAvailability> {
   // Remote environments have no local microphone
-  if (isRunningOnHomespace() || isEnvTruthy(process.env.CLAUDE_CODE_REMOTE)) {
+  if (isRunningOnHomespace() || isEnvTruthy(process.env.VIBECODE_REMOTE)) {
     return {
       available: false,
       reason:

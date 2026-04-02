@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Preconnect to the Anthropic API to overlap TCP+TLS handshake with startup.
  *
  * The TCP+TLS handshake is ~100-200ms that normally blocks inside the first
@@ -34,9 +34,9 @@ export function preconnectAnthropicApi(): void {
 
   // Skip if using a cloud provider — different endpoint + auth
   if (
-    isEnvTruthy(process.env.CLAUDE_CODE_USE_BEDROCK) ||
-    isEnvTruthy(process.env.CLAUDE_CODE_USE_VERTEX) ||
-    isEnvTruthy(process.env.CLAUDE_CODE_USE_FOUNDRY)
+    isEnvTruthy(process.env.VIBECODE_USE_BEDROCK) ||
+    isEnvTruthy(process.env.VIBECODE_USE_VERTEX) ||
+    isEnvTruthy(process.env.VIBECODE_USE_FOUNDRY)
   ) {
     return
   }
@@ -47,8 +47,8 @@ export function preconnectAnthropicApi(): void {
     process.env.HTTP_PROXY ||
     process.env.http_proxy ||
     process.env.ANTHROPIC_UNIX_SOCKET ||
-    process.env.CLAUDE_CODE_CLIENT_CERT ||
-    process.env.CLAUDE_CODE_CLIENT_KEY
+    process.env.VIBECODE_CLIENT_CERT ||
+    process.env.VIBECODE_CLIENT_KEY
   ) {
     return
   }

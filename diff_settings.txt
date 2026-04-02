@@ -1,0 +1,47 @@
+diff --git a/utils/settings/settings.ts b/utils/settings/settings.ts
+index 3bea04af..50c4c774 100644
+--- a/utils/settings/settings.ts
++++ b/utils/settings/settings.ts
+@@ -1,4 +1,4 @@
+-import { feature } from 'bun:bundle'
++﻿import { feature } from 'bun:bundle'
+ import mergeWith from 'lodash-es/mergeWith.js'
+ import { dirname, join, resolve } from 'path'
+ import { z } from 'zod/v4'
+@@ -232,7 +232,7 @@ function parseSettingsFileUncached(path: string): {
+ 
+ /**
+  * Get the absolute path to the associated file root for a given settings source
+- * (e.g. for $PROJ_DIR/.claude/settings.json, returns $PROJ_DIR)
++ * (e.g. for $PROJ_DIR/.vibecode/settings.json, returns $PROJ_DIR)
+  * @param source The source of the settings
+  * @returns The root path of the settings file
+  */
+@@ -258,13 +258,13 @@ export function getSettingsRootPathForSource(source: SettingSource): string {
+  *
+  * Priority:
+  * 1. Session state (set by CLI flag --cowork)
+- * 2. Environment variable CLAUDE_CODE_USE_COWORK_PLUGINS
++ * 2. Environment variable VIBECODE_USE_COWORK_PLUGINS
+  * 3. Default: 'settings.json'
+  */
+ function getUserSettingsFilePath(): string {
+   if (
+     getUseCoworkPlugins() ||
+-    isEnvTruthy(process.env.CLAUDE_CODE_USE_COWORK_PLUGINS)
++    isEnvTruthy(process.env.VIBECODE_USE_COWORK_PLUGINS)
+   ) {
+     return 'cowork_settings.json'
+   }
+@@ -300,9 +300,9 @@ export function getRelativeSettingsFilePathForSource(
+ ): string {
+   switch (source) {
+     case 'projectSettings':
+-      return join('.claude', 'settings.json')
++      return join('.vibecode', 'settings.json')
+     case 'localSettings':
+-      return join('.claude', 'settings.local.json')
++      return join('.vibecode', 'settings.local.json')
+   }
+ }
+ 

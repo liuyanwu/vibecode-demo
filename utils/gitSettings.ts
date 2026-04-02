@@ -1,4 +1,4 @@
-// Git-related behaviors that depend on user settings.
+﻿// Git-related behaviors that depend on user settings.
 //
 // This lives outside git.ts because git.ts is in the vscode extension's
 // dep graph and must stay free of settings.ts, which transitively pulls
@@ -11,7 +11,7 @@ import { isEnvDefinedFalsy, isEnvTruthy } from './envUtils.js'
 import { getInitialSettings } from './settings/settings.js'
 
 export function shouldIncludeGitInstructions(): boolean {
-  const envVal = process.env.CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS
+  const envVal = process.env.VIBECODE_DISABLE_GIT_INSTRUCTIONS
   if (isEnvTruthy(envVal)) return false
   if (isEnvDefinedFalsy(envVal)) return true
   return getInitialSettings().includeGitInstructions ?? true

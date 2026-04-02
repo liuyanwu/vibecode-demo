@@ -1,0 +1,19 @@
+diff --git a/utils/telemetry/sessionTracing.ts b/utils/telemetry/sessionTracing.ts
+index 0ee4f381..5540253c 100644
+--- a/utils/telemetry/sessionTracing.ts
++++ b/utils/telemetry/sessionTracing.ts
+@@ -1,4 +1,4 @@
+-/**
++﻿/**
+  * Session Tracing for Claude Code using OpenTelemetry (BETA)
+  *
+  * This module provides a high-level API for creating and managing spans
+@@ -126,7 +126,7 @@ function ensureCleanupInterval(): void {
+ export function isEnhancedTelemetryEnabled(): boolean {
+   if (feature('ENHANCED_TELEMETRY_BETA')) {
+     const env =
+-      process.env.CLAUDE_CODE_ENHANCED_TELEMETRY_BETA ??
++      process.env.VIBECODE_ENHANCED_TELEMETRY_BETA ??
+       process.env.ENABLE_ENHANCED_TELEMETRY_BETA
+     if (isEnvTruthy(env)) {
+       return true

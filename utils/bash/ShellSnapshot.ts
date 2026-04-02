@@ -1,4 +1,4 @@
-import { execFile } from 'child_process'
+﻿import { execFile } from 'child_process'
 import { execa } from 'execa'
 import { mkdir, stat } from 'fs/promises'
 import * as os from 'os'
@@ -458,7 +458,7 @@ export const createAndSaveSnapshot = async (
         ['-c', '-l', snapshotScript],
         {
           env: {
-            ...((process.env.CLAUDE_CODE_DONT_INHERIT_ENV
+            ...((process.env.VIBECODE_DONT_INHERIT_ENV
               ? {}
               : subprocessEnv()) as typeof process.env),
             SHELL: binShell,

@@ -1,4 +1,4 @@
-import { getIsNonInteractiveSession } from '../../bootstrap/state.js'
+﻿import { getIsNonInteractiveSession } from '../../bootstrap/state.js'
 import { checkHasTrustDialogAccepted } from '../../utils/config.js'
 import { logAntError } from '../../utils/debug.js'
 import { errorMessage } from '../../utils/errors.js'
@@ -65,8 +65,8 @@ export async function getMcpHeadersFromHelper(
       // (git credential-helper style). See deshaw/anthropic-issues#28.
       env: {
         ...process.env,
-        CLAUDE_CODE_MCP_SERVER_NAME: serverName,
-        CLAUDE_CODE_MCP_SERVER_URL: config.url,
+        VIBECODE_MCP_SERVER_NAME: serverName,
+        VIBECODE_MCP_SERVER_URL: config.url,
       },
     })
     if (execResult.code !== 0 || !execResult.stdout) {

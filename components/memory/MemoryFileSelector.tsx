@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import chalk from 'chalk';
 import { mkdir } from 'fs/promises';
@@ -87,7 +87,7 @@ export function MemoryFileSelector(t0) {
     let description;
     const isGit = projectIsInGitRepo(getOriginalCwd());
     if (file.type === "User" && !file.isNested) {
-      description = "Saved in ~/.claude/CLAUDE.md";
+      description = "Saved in ~/.vibecode/CLAUDE.md";
     } else {
       if (file.type === "Project" && !file.isNested && file.path === projectMemoryPath) {
         description = `${isGit ? "Checked in at" : "Saved in"} ./CLAUDE.md`;

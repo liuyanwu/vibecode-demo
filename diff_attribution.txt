@@ -1,0 +1,37 @@
+diff --git a/utils/attribution.ts b/utils/attribution.ts
+index fbce4237..9ceb700c 100644
+--- a/utils/attribution.ts
++++ b/utils/attribution.ts
+@@ -1,4 +1,4 @@
+-import { feature } from 'bun:bundle'
++﻿import { feature } from 'bun:bundle'
+ import { stat } from 'fs/promises'
+ import { getClientType } from '../bootstrap/state.js'
+ import {
+@@ -55,7 +55,7 @@ export function getAttributionTexts(): AttributionTexts {
+   }
+ 
+   if (getClientType() === 'remote') {
+-    const remoteSessionId = process.env.CLAUDE_CODE_REMOTE_SESSION_ID
++    const remoteSessionId = process.env.VIBECODE_REMOTE_SESSION_ID
+     if (remoteSessionId) {
+       const ingressUrl = process.env.SESSION_INGRESS_URL
+       // Skip for local dev - URLs won't persist
+@@ -302,7 +302,7 @@ export async function getEnhancedPRAttribution(
+   }
+ 
+   if (getClientType() === 'remote') {
+-    const remoteSessionId = process.env.CLAUDE_CODE_REMOTE_SESSION_ID
++    const remoteSessionId = process.env.VIBECODE_REMOTE_SESSION_ID
+     if (remoteSessionId) {
+       const ingressUrl = process.env.SESSION_INGRESS_URL
+       // Skip for local dev - URLs won't persist
+@@ -348,7 +348,7 @@ export async function getEnhancedPRAttribution(
+       isInternalModelRepo(),
+     ])
+ 
+-  const claudePercent = attributionData?.summary.claudePercent ?? 0
++  const claudePercent = attributionData?.summary.vibecodePercent ?? 0
+ 
+   logForDebugging(
+     `PR Attribution: claudePercent: ${claudePercent}, promptCount: ${promptCount}, memoryAccessCount: ${memoryAccessCount}`,

@@ -1,4 +1,4 @@
-import { createHash } from 'crypto'
+﻿import { createHash } from 'crypto'
 import { readFileSync, realpathSync, statSync } from 'fs'
 import { open, readFile, realpath, stat } from 'fs/promises'
 import memoize from 'lodash-es/memoize.js'
@@ -142,7 +142,7 @@ const resolveCanonicalRoot = memoizeWithLRU(
       // SECURITY: The .git file and commondir are attacker-controlled in a
       // cloned/downloaded repo. Without validation, a malicious repo can point
       // commondir at any path the victim has trusted, bypassing the trust
-      // dialog and executing hooks from .claude/settings.json on startup.
+      // dialog and executing hooks from .vibecode/settings.json on startup.
       //
       // Validate the structure matches what `git worktree add` creates:
       //   1. worktreeGitDir is a direct child of <commonDir>/worktrees/

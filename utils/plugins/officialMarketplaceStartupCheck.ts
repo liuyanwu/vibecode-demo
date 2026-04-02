@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Auto-install logic for the official Anthropic marketplace.
  *
  * This module handles automatically installing the official marketplace
@@ -46,7 +46,7 @@ export type OfficialMarketplaceSkipReason =
  */
 export function isOfficialMarketplaceAutoInstallDisabled(): boolean {
   return isEnvTruthy(
-    process.env.CLAUDE_CODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL,
+    process.env.VIBECODE_DISABLE_OFFICIAL_MARKETPLACE_AUTOINSTALL,
   )
 }
 

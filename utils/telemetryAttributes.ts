@@ -1,4 +1,4 @@
-import type { Attributes } from '@opentelemetry/api'
+﻿import type { Attributes } from '@opentelemetry/api'
 import { getSessionId } from 'src/bootstrap/state.js'
 import { getOauthAccountInfo } from './auth.js'
 import { getOrCreateUserID } from './config.js'
@@ -57,7 +57,7 @@ export function getTelemetryAttributes(): Attributes {
     ) {
       attributes['user.account_uuid'] = accountUuid
       attributes['user.account_id'] =
-        process.env.CLAUDE_CODE_ACCOUNT_TAGGED_ID ||
+        process.env.VIBECODE_ACCOUNT_TAGGED_ID ||
         toTaggedId('user', accountUuid)
     }
   }

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Plugin option storage and substitution.
  *
  * Plugins declare user-configurable options in `manifest.userConfig` — a record
@@ -155,7 +155,7 @@ export function savePluginOptions(
   //
   // TODO: getSettings_DEPRECATED returns MERGED settings across all scopes.
   // Mutating that and writing to userSettings can leak project-scope
-  // pluginConfigs into ~/.claude/settings.json. Same pattern exists in
+  // pluginConfigs into ~/.vibecode/settings.json. Same pattern exists in
   // saveMcpServerUserConfig. Safe today since pluginConfigs is only ever
   // written here (user-scope), but will bite if we add project-scoped
   // plugin options.

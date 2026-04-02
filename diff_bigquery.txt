@@ -1,0 +1,23 @@
+diff --git a/utils/telemetry/bigqueryExporter.ts b/utils/telemetry/bigqueryExporter.ts
+index 2f935c45..fb917844 100644
+--- a/utils/telemetry/bigqueryExporter.ts
++++ b/utils/telemetry/bigqueryExporter.ts
+@@ -1,4 +1,4 @@
+-import type { Attributes, HrTime } from '@opentelemetry/api'
++﻿import type { Attributes, HrTime } from '@opentelemetry/api'
+ import { type ExportResult, ExportResultCode } from '@opentelemetry/core'
+ import {
+   AggregationTemporality,
+@@ -48,10 +48,10 @@ export class BigQueryMetricsExporter implements PushMetricExporter {
+ 
+     if (
+       process.env.USER_TYPE === 'ant' &&
+-      process.env.ANT_CLAUDE_CODE_METRICS_ENDPOINT
++      process.env.ANT_VIBECODE_METRICS_ENDPOINT
+     ) {
+       this.endpoint =
+-        process.env.ANT_CLAUDE_CODE_METRICS_ENDPOINT +
++        process.env.ANT_VIBECODE_METRICS_ENDPOINT +
+         '/api/claude_code/metrics'
+     } else {
+       this.endpoint = defaultEndpoint

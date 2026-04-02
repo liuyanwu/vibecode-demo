@@ -1,4 +1,4 @@
-import type { StdoutMessage } from 'src/entrypoints/sdk/controlTypes.js'
+﻿import type { StdoutMessage } from 'src/entrypoints/sdk/controlTypes.js'
 import type WsWebSocket from 'ws'
 import { logEvent } from '../../services/analytics/index.js'
 import { CircularBuffer } from '../../utils/CircularBuffer.js'
@@ -768,7 +768,7 @@ export class WebSocketTransport implements Transport {
     this.stopKeepaliveInterval()
 
     // In CCR sessions, session activity heartbeats handle keep-alives
-    if (isEnvTruthy(process.env.CLAUDE_CODE_REMOTE)) {
+    if (isEnvTruthy(process.env.VIBECODE_REMOTE)) {
       return
     }
 

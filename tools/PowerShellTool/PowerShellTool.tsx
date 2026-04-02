@@ -1,4 +1,4 @@
-import { feature } from 'bun:bundle';
+﻿import { feature } from 'bun:bundle';
 import type { ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs';
 import { copyFile, stat as fsStat, truncate as fsTruncate, link } from 'fs/promises';
 import * as React from 'react';
@@ -224,7 +224,7 @@ function isWindowsSandboxPolicyViolation(): boolean {
 // Check if background tasks are disabled at module load time
 const isBackgroundTasksDisabled =
 // eslint-disable-next-line custom-rules/no-process-env-top-level -- Intentional: schema must be defined at module load
-isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_BACKGROUND_TASKS);
+isEnvTruthy(process.env.VIBECODE_DISABLE_BACKGROUND_TASKS);
 const fullInputSchema = lazySchema(() => z.strictObject({
   command: z.string().describe('The PowerShell command to execute'),
   timeout: semanticNumber(z.number().optional()).describe(`Optional timeout in milliseconds (max ${getMaxTimeoutMs()})`),

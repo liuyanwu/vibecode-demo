@@ -1,4 +1,4 @@
-import { feature } from 'bun:bundle'
+﻿import { feature } from 'bun:bundle'
 import { getShortcutDisplay } from '../keybindings/shortcutFormat.js'
 import { isExtractModeActive } from '../memdir/paths.js'
 import {
@@ -135,7 +135,7 @@ export async function* handleStopHooks(
   // or forked agents contending for resources during shutdown.
   if (!isBareMode()) {
     // Inline env check for dead code elimination in external builds
-    if (!isEnvDefinedFalsy(process.env.CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION)) {
+    if (!isEnvDefinedFalsy(process.env.VIBECODE_ENABLE_PROMPT_SUGGESTION)) {
       void executePromptSuggestion(stopHookContext)
     }
     if (

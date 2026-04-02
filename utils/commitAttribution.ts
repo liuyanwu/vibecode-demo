@@ -1,4 +1,4 @@
-import { createHash, randomUUID, type UUID } from 'crypto'
+﻿import { createHash, randomUUID, type UUID } from 'crypto'
 import { stat } from 'fs/promises'
 import { isAbsolute, join, relative, sep } from 'path'
 import { getOriginalCwd, getSessionId } from '../bootstrap/state.js'
@@ -227,7 +227,7 @@ export type AttributionData = {
  * Get the current client surface from environment.
  */
 export function getClientSurface(): string {
-  return process.env.CLAUDE_CODE_ENTRYPOINT ?? 'cli'
+  return process.env.VIBECODE_ENTRYPOINT ?? 'cli'
 }
 
 /**
@@ -457,7 +457,7 @@ export function trackFileDeletion(
 ): AttributionState {
   const normalizedPath = normalizeFilePath(filePath)
   const existingState = state.fileStates.get(normalizedPath)
-  const existingContribution = existingState?.claudeContribution ?? 0
+    const existingContribution = existingState?.claudeContribution ?? 0
   const deletedChars = oldContent.length
 
   const newFileState: FileAttributionState = {
@@ -504,7 +504,7 @@ export function trackBulkFileChanges(
     if (change.type === 'deleted') {
       const normalizedPath = normalizeFilePath(change.path)
       const existingState = newFileStates.get(normalizedPath)
-      const existingContribution = existingState?.claudeContribution ?? 0
+    const existingContribution = existingState?.claudeContribution ?? 0
       const deletedChars = change.oldContent.length
 
       newFileStates.set(normalizedPath, {
@@ -637,7 +637,7 @@ export async function calculateCommitAttribution(
       if (deleted) {
         // File was deleted
         if (fileState) {
-          // Claude deleted this file (tracked deletion)
+          // VibeCode deleted this file (tracked deletion)
           claudeChars = fileState.claudeContribution
           humanChars = 0
         } else {

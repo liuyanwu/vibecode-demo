@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 import React, { type ReactNode } from 'react';
 import { Box } from '../../../../ink.js';
 import { useKeybinding } from '../../../../keybindings/useKeybinding.js';
@@ -37,28 +37,28 @@ export function MemoryStep() {
   let t1;
   if ($[1] !== isUserScope) {
     t1 = isUserScope ? [{
-      label: "User scope (~/.claude/agent-memory/) (Recommended)",
+      label: "User scope (~/.vibecode/agent-memory/) (Recommended)",
       value: "user"
     }, {
       label: "None (no persistent memory)",
       value: "none"
     }, {
-      label: "Project scope (.claude/agent-memory/)",
+      label: "Project scope (.vibecode/agent-memory/)",
       value: "project"
     }, {
-      label: "Local scope (.claude/agent-memory-local/)",
+      label: "Local scope (.vibecode/agent-memory-local/)",
       value: "local"
     }] : [{
-      label: "Project scope (.claude/agent-memory/) (Recommended)",
+      label: "Project scope (.vibecode/agent-memory/) (Recommended)",
       value: "project"
     }, {
       label: "None (no persistent memory)",
       value: "none"
     }, {
-      label: "User scope (~/.claude/agent-memory/)",
+      label: "User scope (~/.vibecode/agent-memory/)",
       value: "user"
     }, {
-      label: "Local scope (.claude/agent-memory-local/)",
+      label: "Local scope (.vibecode/agent-memory-local/)",
       value: "local"
     }];
     $[1] = isUserScope;

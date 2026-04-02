@@ -1,4 +1,4 @@
-import { feature } from 'bun:bundle'
+﻿import { feature } from 'bun:bundle'
 import type { BetaMessageStreamParams } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import { readdir, readFile, stat } from 'fs/promises'
 import memoize from 'lodash-es/memoize.js'
@@ -137,10 +137,10 @@ export function attachErrorLogSink(newSink: ErrorLogSink): void {
  * Logs an error to multiple destinations for debugging and monitoring.
  *
  * This function logs errors to:
- * - Debug logs (visible via `claude --debug` or `tail -f ~/.claude/debug/latest`)
+ * - Debug logs (visible via `claude --debug` or `tail -f ~/.vibecode/debug/latest`)
  * - In-memory error log (accessible via `getInMemoryErrors()`, useful for including
  *   in bug reports or displaying recent errors to users)
- * - Persistent error log file (only for internal 'ant' users, stored in ~/.claude/errors/)
+ * - Persistent error log file (only for internal 'ant' users, stored in ~/.vibecode/errors/)
  *
  * Usage:
  * ```ts
@@ -148,7 +148,7 @@ export function attachErrorLogSink(newSink: ErrorLogSink): void {
  * ```
  *
  * To view errors:
- * - Debug: Run `claude --debug` or `tail -f ~/.claude/debug/latest`
+ * - Debug: Run `claude --debug` or `tail -f ~/.vibecode/debug/latest`
  * - In-memory: Call `getInMemoryErrors()` to get recent errors for the current session
  */
 const isHardFailMode = memoize((): boolean => {
@@ -167,9 +167,9 @@ export function logError(error: unknown): void {
     // Check if error reporting should be disabled
     if (
       // Cloud providers (Bedrock/Vertex/Foundry) always disable features
-      isEnvTruthy(process.env.CLAUDE_CODE_USE_BEDROCK) ||
-      isEnvTruthy(process.env.CLAUDE_CODE_USE_VERTEX) ||
-      isEnvTruthy(process.env.CLAUDE_CODE_USE_FOUNDRY) ||
+      isEnvTruthy(process.env.VIBECODE_USE_BEDROCK) ||
+      isEnvTruthy(process.env.VIBECODE_USE_VERTEX) ||
+      isEnvTruthy(process.env.VIBECODE_USE_FOUNDRY) ||
       process.env.DISABLE_ERROR_REPORTING ||
       isEssentialTrafficOnly()
     ) {

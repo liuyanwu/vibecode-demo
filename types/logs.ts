@@ -1,4 +1,4 @@
-import type { UUID } from 'crypto'
+﻿import type { UUID } from 'crypto'
 import type { FileHistorySnapshot } from 'src/utils/fileHistory.js'
 import type { ContentReplacementRecord } from 'src/utils/toolResultStorage.js'
 import type { AgentId } from './ids.js'
@@ -8,7 +8,7 @@ import type { QueueOperationMessage } from './messageQueueTypes.js'
 export type SerializedMessage = Message & {
   cwd: string
   userType: string
-  entrypoint?: string // CLAUDE_CODE_ENTRYPOINT — distinguishes cli/sdk-ts/sdk-py/etc.
+  entrypoint?: string // VIBECODE_ENTRYPOINT — distinguishes cli/sdk-ts/sdk-py/etc.
   sessionId: string
   timestamp: string
   version: string

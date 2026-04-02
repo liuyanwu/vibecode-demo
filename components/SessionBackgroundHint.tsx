@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { useCallback, useState } from 'react';
 import { useDoublePress } from '../hooks/useDoublePress.js';
@@ -37,7 +37,7 @@ export function SessionBackgroundHint(t0) {
   let t1;
   if ($[0] !== appStateStore || $[1] !== handleDoublePress || $[2] !== isLoading || $[3] !== setAppState) {
     t1 = () => {
-      if (isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_BACKGROUND_TASKS)) {
+      if (isEnvTruthy(process.env.VIBECODE_DISABLE_BACKGROUND_TASKS)) {
         return;
       }
       const state = appStateStore.getState();

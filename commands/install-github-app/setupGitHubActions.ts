@@ -1,4 +1,4 @@
-import {
+﻿import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from 'src/services/analytics/index.js'
@@ -41,11 +41,11 @@ async function createWorkflowFile(
   }
 
   let content = workflowContent
-  if (secretName === 'CLAUDE_CODE_OAUTH_TOKEN') {
-    // For OAuth tokens, use the claude_code_oauth_token parameter
+  if (secretName === 'VIBECODE_OAUTH_TOKEN') {
+    // For OAuth tokens, use the VIBECODE_oauth_token parameter
     content = workflowContent.replace(
       /anthropic_api_key: \$\{\{ secrets\.ANTHROPIC_API_KEY \}\}/g,
-      `claude_code_oauth_token: \${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}`,
+      `VIBECODE_oauth_token: \${{ secrets.VIBECODE_OAUTH_TOKEN }}`,
     )
   } else if (secretName !== 'ANTHROPIC_API_KEY') {
     // For other custom secret names, keep using anthropic_api_key parameter

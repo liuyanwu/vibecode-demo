@@ -1,4 +1,4 @@
-import axios from 'axios'
+﻿import axios from 'axios'
 import memoize from 'lodash-es/memoize.js'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
@@ -242,7 +242,7 @@ export const getGroveNoticeConfig = memoize(
           throw new Error(`Failed to get auth headers: ${authHeaders.error}`)
         }
         return axios.get<GroveConfig>(
-          `${getOauthConfig().BASE_API_URL}/api/claude_code_grove`,
+          `${getOauthConfig().BASE_API_URL}/api/VIBECODE_grove`,
           {
             headers: {
               ...authHeaders.headers,

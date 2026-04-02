@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 import React, { type ReactNode } from 'react';
 import { Box } from '../../../../ink.js';
 import type { SettingSource } from '../../../../utils/settings/constants.js';
@@ -19,7 +19,7 @@ export function LocationStep() {
   let t0;
   if ($[0] === Symbol.for("react.memo_cache_sentinel")) {
     t0 = {
-      label: "Project (.claude/agents/)",
+      label: "Project (.vibecode/agents/)",
       value: "projectSettings" as SettingSource
     };
     $[0] = t0;
@@ -29,7 +29,7 @@ export function LocationStep() {
   let t1;
   if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
     t1 = [t0, {
-      label: "Personal (~/.claude/agents/)",
+      label: "Personal (~/.vibecode/agents/)",
       value: "userSettings" as SettingSource
     }];
     $[1] = t1;

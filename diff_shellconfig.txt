@@ -1,0 +1,19 @@
+diff --git a/utils/shellConfig.ts b/utils/shellConfig.ts
+index 329ad7f2..8681ecf9 100644
+--- a/utils/shellConfig.ts
++++ b/utils/shellConfig.ts
+@@ -1,4 +1,4 @@
+-/**
++﻿/**
+  * Utilities for managing shell configuration files (like .bashrc, .zshrc)
+  * Used for managing claude aliases and PATH entries
+  */
+@@ -38,7 +38,7 @@ export function getShellConfigPaths(
+ 
+ /**
+  * Filter out installer-created claude aliases from an array of lines
+- * Only removes aliases pointing to $HOME/.claude/local/claude
++ * Only removes aliases pointing to $HOME/.vibecode/local/claude
+  * Preserves custom user aliases that point to other locations
+  * Returns the filtered lines and whether our default installer alias was found
+  */

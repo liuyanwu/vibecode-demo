@@ -1,4 +1,4 @@
-import type { ChildProcess } from 'child_process'
+﻿import type { ChildProcess } from 'child_process'
 import { z } from 'zod/v4'
 import { lazySchema } from '../utils/lazySchema.js'
 
@@ -40,7 +40,7 @@ export type SessionInfo = {
 }
 
 /**
- * Stable session key → session metadata. Persisted to ~/.claude/server-sessions.json
+ * Stable session key → session metadata. Persisted to ~/.vibecode/server-sessions.json
  * so sessions can be resumed across server restarts.
  */
 export type SessionIndexEntry = {

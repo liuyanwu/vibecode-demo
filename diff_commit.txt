@@ -1,0 +1,216 @@
+diff --git a/utils/commitAttribution.ts b/utils/commitAttribution.ts
+index 6cf8c4d0..c2f07860 100644
+--- a/utils/commitAttribution.ts
++++ b/utils/commitAttribution.ts
+@@ -1,4 +1,4 @@
+-import { createHash, randomUUID, type UUID } from 'crypto'
++﻿import { createHash, randomUUID, type UUID } from 'crypto'
+ import { stat } from 'fs/promises'
+ import { isAbsolute, join, relative, sep } from 'path'
+ import { getOriginalCwd, getSessionId } from '../bootstrap/state.js'
+@@ -196,7 +196,7 @@ export type AttributionState = {
+  */
+ export type AttributionSummary = {
+   claudePercent: number
+-  claudeChars: number
++  vibecodeChars: number
+   humanChars: number
+   surfaces: string[]
+ }
+@@ -205,7 +205,7 @@ export type AttributionSummary = {
+  * Per-file attribution details for git notes.
+  */
+ export type FileAttribution = {
+-  claudeChars: number
++  vibecodeChars: number
+   humanChars: number
+   percent: number
+   surface: string
+@@ -218,7 +218,7 @@ export type AttributionData = {
+   version: 1
+   summary: AttributionSummary
+   files: Record<string, FileAttribution>
+-  surfaceBreakdown: Record<string, { claudeChars: number; percent: number }>
++  surfaceBreakdown: Record<string, { vibecodeChars: number; percent: number }>
+   excludedGenerated: string[]
+   sessions: string[]
+ }
+@@ -227,7 +227,7 @@ export type AttributionData = {
+  * Get the current client surface from environment.
+  */
+ export function getClientSurface(): string {
+-  return process.env.CLAUDE_CODE_ENTRYPOINT ?? 'cli'
++  return process.env.VIBECODE_ENTRYPOINT ?? 'cli'
+ }
+ 
+ /**
+@@ -366,7 +366,7 @@ function computeFileModificationState(
+ 
+     // Get current file state if it exists
+     const existingState = existingFileStates.get(normalizedPath)
+-    const existingContribution = existingState?.claudeContribution ?? 0
++    const existingContribution = existingState?.vibecodeContribution ?? 0
+ 
+     return {
+       contentHash: computeContentHash(newContent),
+@@ -423,7 +423,7 @@ export function trackFileModification(
+   newFileStates.set(normalizedPath, newFileState)
+ 
+   logForDebugging(
+-    `Attribution: Tracked ${newFileState.claudeContribution} chars for ${normalizedPath}`,
++    `Attribution: Tracked ${newFileState.vibecodeContribution} chars for ${normalizedPath}`,
+   )
+ 
+   return {
+@@ -457,7 +457,7 @@ export function trackFileDeletion(
+ ): AttributionState {
+   const normalizedPath = normalizeFilePath(filePath)
+   const existingState = state.fileStates.get(normalizedPath)
+-  const existingContribution = existingState?.claudeContribution ?? 0
++  const existingContribution = existingState?.vibecodeContribution ?? 0
+   const deletedChars = oldContent.length
+ 
+   const newFileState: FileAttributionState = {
+@@ -470,7 +470,7 @@ export function trackFileDeletion(
+   newFileStates.set(normalizedPath, newFileState)
+ 
+   logForDebugging(
+-    `Attribution: Tracked deletion of ${normalizedPath} (${deletedChars} chars removed, total contribution: ${newFileState.claudeContribution})`,
++    `Attribution: Tracked deletion of ${normalizedPath} (${deletedChars} chars removed, total contribution: ${newFileState.vibecodeContribution})`,
+   )
+ 
+   return {
+@@ -504,7 +504,7 @@ export function trackBulkFileChanges(
+     if (change.type === 'deleted') {
+       const normalizedPath = normalizeFilePath(change.path)
+       const existingState = newFileStates.get(normalizedPath)
+-      const existingContribution = existingState?.claudeContribution ?? 0
++      const existingContribution = existingState?.vibecodeContribution ?? 0
+       const deletedChars = change.oldContent.length
+ 
+       newFileStates.set(normalizedPath, {
+@@ -529,7 +529,7 @@ export function trackBulkFileChanges(
+         newFileStates.set(normalizedPath, newFileState)
+ 
+         logForDebugging(
+-          `Attribution: Tracked ${newFileState.claudeContribution} chars for ${normalizedPath}`,
++          `Attribution: Tracked ${newFileState.vibecodeContribution} chars for ${normalizedPath}`,
+         )
+       }
+     }
+@@ -557,7 +557,7 @@ export async function calculateCommitAttribution(
+   const surfaces = new Set<string>()
+   const surfaceCounts: Record<string, number> = {}
+ 
+-  let totalClaudeChars = 0
++  let totalVibecodeChars = 0
+   let totalHumanChars = 0
+ 
+   // Merge file states from all sessions
+@@ -605,7 +605,7 @@ export async function calculateCommitAttribution(
+         mergedFileStates.set(path, {
+           ...fileState,
+           claudeContribution:
+-            existing.claudeContribution + fileState.claudeContribution,
++            existing.vibecodeContribution + fileState.vibecodeContribution,
+         })
+       } else {
+         mergedFileStates.set(path, fileState)
+@@ -628,7 +628,7 @@ export async function calculateCommitAttribution(
+       // Get the surface for this file
+       const fileSurface = states[0]!.surface
+ 
+-      let claudeChars = 0
++      let vibecodeChars = 0
+       let humanChars = 0
+ 
+       // Check if file was deleted
+@@ -637,8 +637,8 @@ export async function calculateCommitAttribution(
+       if (deleted) {
+         // File was deleted
+         if (fileState) {
+-          // Claude deleted this file (tracked deletion)
+-          claudeChars = fileState.claudeContribution
++          // VibeCode deleted this file (tracked deletion)
++          vibecodeChars = fileState.vibecodeContribution
+           humanChars = 0
+         } else {
+           // Human deleted this file (untracked deletion)
+@@ -655,7 +655,7 @@ export async function calculateCommitAttribution(
+ 
+           if (fileState) {
+             // We have tracked modifications for this file
+-            claudeChars = fileState.claudeContribution
++            vibecodeChars = fileState.vibecodeContribution
+             humanChars = 0
+           } else if (baseline) {
+             // File was modified but not tracked - human modification
+@@ -672,16 +672,16 @@ export async function calculateCommitAttribution(
+       }
+ 
+       // Ensure non-negative values
+-      claudeChars = Math.max(0, claudeChars)
++      vibecodeChars = Math.max(0, vibecodeChars)
+       humanChars = Math.max(0, humanChars)
+ 
+-      const total = claudeChars + humanChars
+-      const percent = total > 0 ? Math.round((claudeChars / total) * 100) : 0
++      const total = vibecodeChars + humanChars
++      const percent = total > 0 ? Math.round((vibecodeChars / total) * 100) : 0
+ 
+       return {
+         type: 'file' as const,
+         file,
+-        claudeChars,
++        vibecodeChars,
+         humanChars,
+         percent,
+         surface: fileSurface,
+@@ -699,39 +699,39 @@ export async function calculateCommitAttribution(
+     }
+ 
+     files[result.file] = {
+-      claudeChars: result.claudeChars,
++      vibecodeChars: result.vibecodeChars,
+       humanChars: result.humanChars,
+       percent: result.percent,
+       surface: result.surface,
+     }
+ 
+-    totalClaudeChars += result.claudeChars
++    totalVibecodeChars += result.vibecodeChars
+     totalHumanChars += result.humanChars
+ 
+     surfaceCounts[result.surface] =
+-      (surfaceCounts[result.surface] ?? 0) + result.claudeChars
++      (surfaceCounts[result.surface] ?? 0) + result.vibecodeChars
+   }
+ 
+-  const totalChars = totalClaudeChars + totalHumanChars
++  const totalChars = totalVibecodeChars + totalHumanChars
+   const claudePercent =
+-    totalChars > 0 ? Math.round((totalClaudeChars / totalChars) * 100) : 0
++    totalChars > 0 ? Math.round((totalVibecodeChars / totalChars) * 100) : 0
+ 
+   // Calculate surface breakdown (percentage of total content per surface)
+   const surfaceBreakdown: Record<
+     string,
+-    { claudeChars: number; percent: number }
++    { vibecodeChars: number; percent: number }
+   > = {}
+   for (const [surface, chars] of Object.entries(surfaceCounts)) {
+     // Calculate what percentage of TOTAL content this surface contributed
+     const percent = totalChars > 0 ? Math.round((chars / totalChars) * 100) : 0
+-    surfaceBreakdown[surface] = { claudeChars: chars, percent }
++    surfaceBreakdown[surface] = { vibecodeChars: chars, percent }
+   }
+ 
+   return {
+     version: 1,
+     summary: {
+       claudePercent,
+-      claudeChars: totalClaudeChars,
++      vibecodeChars: totalVibecodeChars,
+       humanChars: totalHumanChars,
+       surfaces: Array.from(surfaces),
+     },

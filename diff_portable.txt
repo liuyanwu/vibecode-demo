@@ -1,0 +1,19 @@
+diff --git a/utils/sessionStoragePortable.ts b/utils/sessionStoragePortable.ts
+index 4439fb31..9c929bd8 100644
+--- a/utils/sessionStoragePortable.ts
++++ b/utils/sessionStoragePortable.ts
+@@ -1,4 +1,4 @@
+-/**
++﻿/**
+  * Portable session storage utilities.
+  *
+  * Pure Node.js — no internal dependencies on logging, experiments, or feature
+@@ -387,7 +387,7 @@ export async function findProjectDir(
+  * to sibling git worktrees. `projectPath` in the result is the canonical
+  * user-facing directory the file was found under.
+  *
+- * When `dir` is omitted: scan all project directories under ~/.claude/projects/.
++ * When `dir` is omitted: scan all project directories under ~/.vibecode/projects/.
+  * `projectPath` is undefined in this case (no meaningful project path to report).
+  *
+  * Existence is checked by stat (operate-then-catch-ENOENT, no existsSync).

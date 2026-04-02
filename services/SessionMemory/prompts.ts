@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises'
+﻿import { readFile } from 'fs/promises'
 import { join } from 'path'
 import { roughTokenCountEstimation } from '../../services/tokenEstimation.js'
 import { getClaudeConfigHomeDir } from '../../utils/envUtils.js'
@@ -105,7 +105,7 @@ export async function loadSessionMemoryTemplate(): Promise<string> {
 
 /**
  * Load custom session memory prompt from file if it exists
- * Custom prompts can be placed at ~/.claude/session-memory/prompt.md
+ * Custom prompts can be placed at ~/.vibecode/session-memory/prompt.md
  * Use {{variableName}} syntax for variable substitution (e.g., {{currentNotes}}, {{notesPath}})
  */
 export async function loadSessionMemoryPrompt(): Promise<string> {

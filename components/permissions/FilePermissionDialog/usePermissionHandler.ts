@@ -1,4 +1,4 @@
-import {
+﻿import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
 } from '../../../services/analytics/index.js'
@@ -101,7 +101,7 @@ function handleAcceptSession(
 
   logPermissionEvent('accept', completionType, languageName, messageId)
 
-  // For claude-folder scope, grant session-level access to all .claude/ files
+  // For claude-folder scope, grant session-level access to all .vibecode/ files
   if (
     options?.scope === 'claude-folder' ||
     options?.scope === 'global-claude-folder'

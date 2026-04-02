@@ -1,4 +1,4 @@
-// biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
+﻿// biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 /**
  * Ensure that any model codenames introduced here are also added to
  * scripts/excluded-strings.txt to avoid leaking them. Wrap any codename string
@@ -550,7 +550,7 @@ function isLegacyOpusFirstParty(model: string): boolean {
  * Opt-out for the legacy Opus 4.0/4.1 → current Opus remap.
  */
 export function isLegacyModelRemapEnabled(): boolean {
-  return !isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_LEGACY_MODEL_REMAP)
+  return !isEnvTruthy(process.env.VIBECODE_DISABLE_LEGACY_MODEL_REMAP)
 }
 
 export function modelDisplayString(model: ModelSetting): string {

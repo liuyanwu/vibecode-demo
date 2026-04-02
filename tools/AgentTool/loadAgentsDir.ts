@@ -1,4 +1,4 @@
-import { feature } from 'bun:bundle'
+﻿import { feature } from 'bun:bundle'
 import memoize from 'lodash-es/memoize.js'
 import { basename } from 'path'
 import type { SettingSource } from 'src/utils/settings/constants.js'
@@ -296,7 +296,7 @@ async function initializeAgentMemorySnapshots(
 export const getAgentDefinitionsWithOverrides = memoize(
   async (cwd: string): Promise<AgentDefinitionsResult> => {
     // Simple mode: skip custom agents, only return built-ins
-    if (isEnvTruthy(process.env.CLAUDE_CODE_SIMPLE)) {
+    if (isEnvTruthy(process.env.VIBECODE_SIMPLE)) {
       const builtInAgents = getBuiltInAgents()
       return {
         activeAgents: builtInAgents,

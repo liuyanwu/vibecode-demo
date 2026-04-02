@@ -1,0 +1,13 @@
+diff --git a/utils/sessionState.ts b/utils/sessionState.ts
+index f1e6c411..b2944601 100644
+--- a/utils/sessionState.ts
++++ b/utils/sessionState.ts
+@@ -124,7 +124,7 @@ export function notifySessionStateChanged(
+   // their isWorking() last-message heuristics — the trailing idle event
+   // currently pins them at "Running ?".
+   // https://anthropic.slack.com/archives/C093BJBD1CP/p1774152406752229
+-  if (isEnvTruthy(process.env.CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS)) {
++  if (isEnvTruthy(process.env.VIBECODE_EMIT_SESSION_STATE_EVENTS)) {
+     enqueueSdkEvent({
+       type: 'system',
+       subtype: 'session_state_changed',

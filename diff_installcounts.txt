@@ -1,0 +1,18 @@
+diff --git a/utils/plugins/installCounts.ts b/utils/plugins/installCounts.ts
+index 4b28f1ee..48fec888 100644
+--- a/utils/plugins/installCounts.ts
++++ b/utils/plugins/installCounts.ts
+@@ -1,11 +1,11 @@
+-/**
++﻿/**
+  * Plugin install counts data layer
+  *
+  * This module fetches and caches plugin install counts from the official
+  * Claude plugins statistics repository. The cache is refreshed if older
+  * than 24 hours.
+  *
+- * Cache location: ~/.claude/plugins/install-counts-cache.json
++ * Cache location: ~/.vibecode/plugins/install-counts-cache.json
+  */
+ 
+ import axios from 'axios'

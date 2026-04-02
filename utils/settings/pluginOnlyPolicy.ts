@@ -1,4 +1,4 @@
-import { getSettingsForSource } from './settings.js'
+﻿import { getSettingsForSource } from './settings.js'
 import type { CUSTOMIZATION_SURFACES } from './types.js'
 
 export type CustomizationSurface = (typeof CUSTOMIZATION_SURFACES)[number]
@@ -7,7 +7,7 @@ export type CustomizationSurface = (typeof CUSTOMIZATION_SURFACES)[number]
  * Check whether a customization surface is locked to plugin-only sources
  * by the managed `strictPluginOnlyCustomization` policy.
  *
- * "Locked" means user-level (~/.claude/*) and project-level (.claude/*)
+ * "Locked" means user-level (~/.vibecode/*) and project-level (.vibecode/*)
  * sources are skipped for that surface. Managed (policySettings) and
  * plugin-provided sources always load regardless — the policy is admin-set,
  * so managed sources are already admin-controlled, and plugins are gated

@@ -1,4 +1,4 @@
-import memoize from 'lodash-es/memoize.js'
+﻿import memoize from 'lodash-es/memoize.js'
 import { homedir } from 'os'
 import { join } from 'path'
 import { fileSuffixForOauthConfig } from '../constants/oauth.js'
@@ -21,7 +21,7 @@ export const getGlobalClaudeFile = memoize((): string => {
     return join(getClaudeConfigHomeDir(), '.config.json')
   }
 
-  const filename = `.claude${fileSuffixForOauthConfig()}.json`
+  const filename = `.vibecode${fileSuffixForOauthConfig()}.json`
   return join(process.env.CLAUDE_CONFIG_DIR || homedir(), filename)
 })
 
@@ -334,12 +334,12 @@ export const env = {
 
 /**
  * Returns the host platform for analytics reporting.
- * If CLAUDE_CODE_HOST_PLATFORM is set to a valid platform value, that overrides
+ * If VIBECODE_HOST_PLATFORM is set to a valid platform value, that overrides
  * the detected platform. This is useful for container/remote environments where
  * process.platform reports the container OS but the actual host platform differs.
  */
 export function getHostPlatformForAnalytics(): Platform {
-  const override = process.env.CLAUDE_CODE_HOST_PLATFORM
+  const override = process.env.VIBECODE_HOST_PLATFORM
   if (override === 'win32' || override === 'darwin' || override === 'linux') {
     return override
   }

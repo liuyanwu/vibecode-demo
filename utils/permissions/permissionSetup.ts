@@ -1,4 +1,4 @@
-import { feature } from 'bun:bundle'
+﻿import { feature } from 'bun:bundle'
 import { relative } from 'path'
 import {
   getOriginalCwd,
@@ -746,11 +746,11 @@ export function initialPermissionModeFromCLI({
     // settings (e.g. bypassPermissions would otherwise silently grant full
     // access in a remote environment).
     if (
-      isEnvTruthy(process.env.CLAUDE_CODE_REMOTE) &&
+      isEnvTruthy(process.env.VIBECODE_REMOTE) &&
       !['acceptEdits', 'plan', 'default'].includes(settingsMode)
     ) {
       logForDebugging(
-        `settings defaultMode "${settingsMode}" is not supported in CLAUDE_CODE_REMOTE — only acceptEdits and plan are allowed`,
+        `settings defaultMode "${settingsMode}" is not supported in VIBECODE_REMOTE — only acceptEdits and plan are allowed`,
         { level: 'warn' },
       )
       logEvent('tengu_ccr_unsupported_default_mode_ignored', {
@@ -952,8 +952,8 @@ export async function initializeToolPermissionContext({
   let overlyBroadBashPermissions: DangerousPermissionInfo[] = []
   if (
     process.env.USER_TYPE === 'ant' &&
-    !isEnvTruthy(process.env.CLAUDE_CODE_REMOTE) &&
-    process.env.CLAUDE_CODE_ENTRYPOINT !== 'local-agent'
+    !isEnvTruthy(process.env.VIBECODE_REMOTE) &&
+    process.env.VIBECODE_ENTRYPOINT !== 'local-agent'
   ) {
     overlyBroadBashPermissions = [
       ...findOverlyBroadBashPermissions(rulesFromDisk, parsedAllowedToolsCli),

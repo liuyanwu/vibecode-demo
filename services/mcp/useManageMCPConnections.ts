@@ -875,7 +875,7 @@ export function useManageMCPConnections(
       // Phase 1: Load Claude Code configs. Plugin MCP servers that duplicate a
       // --mcp-config entry or a claude.ai connector are suppressed here so they
       // don't connect alongside the connector in Phase 2.
-      const { servers: claudeCodeConfigs, errors: mcpErrors } =
+      const { servers: vibecodeConfigs, errors: mcpErrors } =
         isStrictMcpConfig
           ? { servers: {}, errors: [] }
           : await getClaudeCodeMcpConfigs(dynamicMcpConfig, claudeaiPromise)
@@ -884,7 +884,7 @@ export function useManageMCPConnections(
       // Add MCP errors to plugin errors for UI visibility (deduplicated)
       addErrorsToAppState(setAppState, mcpErrors)
 
-      const configs = { ...claudeCodeConfigs, ...dynamicMcpConfig }
+      const configs = { ...vibecodeConfigs, ...dynamicMcpConfig }
 
       // Start connecting to Claude Code servers (don't wait - runs concurrently with Phase 2)
       // Filter out disabled servers to avoid unnecessary connection attempts
@@ -902,9 +902,9 @@ export function useManageMCPConnections(
       })
 
       // Phase 2: Await claude.ai configs (started above; memoized — no second fetch)
-      let claudeaiConfigs: Record<string, ScopedMcpServerConfig> = {}
+      let vibecodeaiConfigs: Record<string, ScopedMcpServerConfig> = {}
       if (!isStrictMcpConfig) {
-        claudeaiConfigs = filterMcpServersByPolicy(
+        vibecodeaiConfigs = filterMcpServersByPolicy(
           await claudeaiPromise,
         ).allowed
         if (cancelled) return
@@ -912,21 +912,21 @@ export function useManageMCPConnections(
         // Suppress claude.ai connectors that duplicate an enabled manual server.
         // Keys never collide (`slack` vs `claude.ai Slack`) so the merge below
         // won't catch this — need content-based dedup by URL signature.
-        if (Object.keys(claudeaiConfigs).length > 0) {
+        if (Object.keys(vibecodeaiConfigs).length > 0) {
           const { servers: dedupedClaudeAi } = dedupClaudeAiMcpServers(
-            claudeaiConfigs,
+            vibecodeaiConfigs,
             configs,
           )
-          claudeaiConfigs = dedupedClaudeAi
+          vibecodeaiConfigs = dedupedClaudeAi
         }
 
-        if (Object.keys(claudeaiConfigs).length > 0) {
+        if (Object.keys(vibecodeaiConfigs).length > 0) {
           // Add claude.ai servers as pending immediately so they show up in UI
           setAppState(prevState => {
             const existingServerNames = new Set(
               prevState.mcp.clients.map(c => c.name),
             )
-            const newClients = Object.entries(claudeaiConfigs)
+            const newClients = Object.entries(vibecodeaiConfigs)
               .filter(([name]) => !existingServerNames.has(name))
               .map(([name, config]) => ({
                 name,
@@ -947,7 +947,7 @@ export function useManageMCPConnections(
 
           // Now start connecting (only enabled servers)
           const enabledClaudeaiConfigs = Object.fromEntries(
-            Object.entries(claudeaiConfigs).filter(
+            Object.entries(vibecodeaiConfigs).filter(
               ([name]) => !isMcpServerDisabled(name),
             ),
           )
@@ -964,7 +964,7 @@ export function useManageMCPConnections(
       }
 
       // Log server counts after both phases complete
-      const allConfigs = { ...configs, ...claudeaiConfigs }
+      const allConfigs = { ...configs, ...vibecodeaiConfigs }
       const counts = {
         enterprise: 0,
         global: 0,
@@ -983,7 +983,7 @@ export function useManageMCPConnections(
         else if (serverConfig.scope === 'project') counts.project++
         else if (serverConfig.scope === 'local') counts.user++
         else if (serverConfig.scope === 'dynamic') counts.plugin++
-        else if (serverConfig.scope === 'claudeai') counts.claudeai++
+        else if (serverConfig.scope === 'claudeai') counts.vibecodeai++
 
         if (
           process.env.USER_TYPE === 'ant' &&

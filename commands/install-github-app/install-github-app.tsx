@@ -1,4 +1,4 @@
-import { execa } from 'execa';
+﻿import { execa } from 'execa';
 import React, { useCallback, useState } from 'react';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from 'src/services/analytics/index.js';
 import { WorkflowMultiselectDialog } from '../../components/WorkflowMultiselectDialog.js';
@@ -462,10 +462,10 @@ function InstallGitHubApp(props: {
       ...prev_23,
       apiKeyOrOAuthToken: token,
       useExistingKey: false,
-      secretName: 'CLAUDE_CODE_OAUTH_TOKEN',
+      secretName: 'VIBECODE_OAUTH_TOKEN',
       authType: 'oauth_token'
     }));
-    void runSetupGitHubActions(token, 'CLAUDE_CODE_OAUTH_TOKEN');
+    void runSetupGitHubActions(token, 'VIBECODE_OAUTH_TOKEN');
   }, [runSetupGitHubActions]);
   const handleOAuthCancel = useCallback(() => {
     setState(prev_24 => ({

@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 import capitalize from 'lodash-es/capitalize.js';
 import * as React from 'react';
 import { useMemo } from 'react';
@@ -101,7 +101,7 @@ export function SkillsMenu(t0) {
   if (skills.length === 0) {
     let t3;
     if ($[6] === Symbol.for("react.memo_cache_sentinel")) {
-      t3 = <Text dimColor={true}>Create skills in .claude/skills/ or ~/.claude/skills/</Text>;
+      t3 = <Text dimColor={true}>Create skills in .vibecode/skills/ or ~/.vibecode/skills/</Text>;
       $[6] = t3;
     } else {
       t3 = $[6];

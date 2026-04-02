@@ -1,4 +1,4 @@
-import type { StructuredPatchHunk } from 'diff'
+﻿import type { StructuredPatchHunk } from 'diff'
 import { access, readFile } from 'fs/promises'
 import { dirname, join, relative, sep } from 'path'
 import { getCwd } from './cwd.js'
@@ -483,13 +483,13 @@ function parseRawDiffToToolUseDiff(
 /**
  * Determine the best ref to diff against for a PR-like diff.
  * Priority:
- * 1. CLAUDE_CODE_BASE_REF env var (set externally, e.g. by CCR managed containers)
+ * 1. VIBECODE_BASE_REF env var (set externally, e.g. by CCR managed containers)
  * 2. Merge base with the default branch (best guess)
  * 3. HEAD (fallback if merge-base fails)
  */
 async function getDiffRef(gitRoot: string): Promise<string> {
   const baseBranch =
-    process.env.CLAUDE_CODE_BASE_REF || (await getDefaultBranch())
+    process.env.VIBECODE_BASE_REF || (await getDefaultBranch())
   const { stdout, code } = await execFileNoThrowWithCwd(
     gitExe(),
     ['--no-optional-locks', 'merge-base', 'HEAD', baseBranch],

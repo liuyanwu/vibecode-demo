@@ -1,11 +1,11 @@
-/**
+﻿/**
  * TeammateContext - Runtime context for in-process teammates
  *
  * This module provides AsyncLocalStorage-based context for in-process teammates,
  * enabling concurrent teammate execution without global state conflicts.
  *
  * Relationship with other teammate identity mechanisms:
- * - Env vars (CLAUDE_CODE_AGENT_ID): Process-based teammates spawned via tmux
+ * - Env vars (VIBECODE_AGENT_ID): Process-based teammates spawned via tmux
  * - dynamicTeamContext (teammate.ts): Process-based teammates joining at runtime
  * - TeammateContext (this file): In-process teammates via AsyncLocalStorage
  *

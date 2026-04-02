@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Shared analytics configuration
  *
  * Common logic for determining when analytics should be disabled
@@ -19,9 +19,9 @@ import { isTelemetryDisabled } from '../../utils/privacyLevel.js'
 export function isAnalyticsDisabled(): boolean {
   return (
     process.env.NODE_ENV === 'test' ||
-    isEnvTruthy(process.env.CLAUDE_CODE_USE_BEDROCK) ||
-    isEnvTruthy(process.env.CLAUDE_CODE_USE_VERTEX) ||
-    isEnvTruthy(process.env.CLAUDE_CODE_USE_FOUNDRY) ||
+    isEnvTruthy(process.env.VIBECODE_USE_BEDROCK) ||
+    isEnvTruthy(process.env.VIBECODE_USE_VERTEX) ||
+    isEnvTruthy(process.env.VIBECODE_USE_FOUNDRY) ||
     isTelemetryDisabled()
   )
 }

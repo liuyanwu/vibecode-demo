@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import * as React from 'react';
 import { type ReactNode, useEffect, useMemo, useState } from 'react';
@@ -305,7 +305,7 @@ function NotificationContent({
         </Box>}
       {(apiKeyStatus === 'invalid' || apiKeyStatus === 'missing') && <Box>
           <Text color="error" wrap="truncate">
-            {isEnvTruthy(process.env.CLAUDE_CODE_REMOTE) ? 'Authentication error · Try again' : 'Not logged in · Run /login'}
+            {isEnvTruthy(process.env.VIBECODE_REMOTE) ? 'Authentication error · Try again' : 'Not logged in · Run /login'}
           </Text>
         </Box>}
       {debug && <Box>

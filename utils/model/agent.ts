@@ -1,4 +1,4 @@
-import type { PermissionMode } from '../permissions/PermissionMode.js'
+﻿import type { PermissionMode } from '../permissions/PermissionMode.js'
 import { capitalize } from '../stringUtils.js'
 import { MODEL_ALIASES, type ModelAlias } from './aliases.js'
 import { applyBedrockRegionPrefix, getBedrockRegionPrefix } from './bedrock.js'
@@ -40,8 +40,8 @@ export function getAgentModel(
   toolSpecifiedModel?: ModelAlias,
   permissionMode?: PermissionMode,
 ): string {
-  if (process.env.CLAUDE_CODE_SUBAGENT_MODEL) {
-    return parseUserSpecifiedModel(process.env.CLAUDE_CODE_SUBAGENT_MODEL)
+  if (process.env.VIBECODE_SUBAGENT_MODEL) {
+    return parseUserSpecifiedModel(process.env.VIBECODE_SUBAGENT_MODEL)
   }
 
   // Extract Bedrock region prefix from parent model to inherit for subagents.

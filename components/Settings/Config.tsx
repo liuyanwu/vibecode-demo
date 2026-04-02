@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { feature } from 'bun:bundle';
 import { Box, Text, useTheme, useThemeSetting, useTerminalFocus } from '../../ink.js';
@@ -196,7 +196,7 @@ export function Config({
     onIsSearchModeChange?.(ownsEsc);
   }, [ownsEsc, onIsSearchModeChange]);
   const isConnectedToIde = hasAccessToIDEExtensionDiffFeature(context.options.mcpClients);
-  const isFileCheckpointingAvailable = !isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING);
+  const isFileCheckpointingAvailable = !isEnvTruthy(process.env.VIBECODE_DISABLE_FILE_CHECKPOINTING);
   const memoryFiles = React.use(getMemoryFiles(true));
   const shouldShowExternalIncludesToggle = hasExternalClaudeMdIncludes(memoryFiles);
   const autoUpdaterDisabledReason = getAutoUpdaterDisabledReason();

@@ -1,4 +1,4 @@
-import { getSessionId } from '../bootstrap/state.js'
+﻿import { getSessionId } from '../bootstrap/state.js'
 import { checkStatsigFeatureGate_CACHED_MAY_BE_STALE } from '../services/analytics/growthbook.js'
 import type { SessionId } from '../types/ids.js'
 import { isEnvTruthy } from '../utils/envUtils.js'
@@ -34,13 +34,13 @@ export function buildQueryConfig(): QueryConfig {
         'tengu_streaming_tool_execution2',
       ),
       emitToolUseSummaries: isEnvTruthy(
-        process.env.CLAUDE_CODE_EMIT_TOOL_USE_SUMMARIES,
+        process.env.VIBECODE_EMIT_TOOL_USE_SUMMARIES,
       ),
       isAnt: process.env.USER_TYPE === 'ant',
       // Inlined from fastMode.ts to avoid pulling its heavy module graph
       // (axios, settings, auth, model, oauth, config) into test shards that
       // didn't previously load it — changes init order and breaks unrelated tests.
-      fastModeEnabled: !isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_FAST_MODE),
+      fastModeEnabled: !isEnvTruthy(process.env.VIBECODE_DISABLE_FAST_MODE),
     },
   }
 }

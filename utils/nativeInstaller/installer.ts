@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Native Installer Implementation
  *
  * This module implements the file-based native installer system described in
@@ -1688,8 +1688,8 @@ export async function cleanupNpmInstallations(): Promise<{
     }
   }
 
-  // Check for local installation at ~/.claude/local
-  const localInstallDir = join(homedir(), '.claude', 'local')
+  // Check for local installation at ~/.vibecode/local
+  const localInstallDir = join(homedir(), '.vibecode', 'local')
 
   try {
     await rm(localInstallDir, { recursive: true })

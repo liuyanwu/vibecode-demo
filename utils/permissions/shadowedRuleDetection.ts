@@ -1,4 +1,4 @@
-import type { ToolPermissionContext } from '../../Tool.js'
+﻿import type { ToolPermissionContext } from '../../Tool.js'
 import { BASH_TOOL_NAME } from '../../tools/BashTool/toolName.js'
 import type { PermissionRule, PermissionRuleSource } from './PermissionRule.js'
 import {
@@ -52,7 +52,7 @@ type ShadowResult =
  * - command: From slash command frontmatter, potentially shared
  *
  * Personal settings include:
- * - userSettings: User's global ~/.claude settings
+ * - userSettings: User's global ~/.vibecode settings
  * - localSettings: Gitignored per-project settings
  * - cliArg: Runtime CLI arguments
  * - session: In-memory session rules

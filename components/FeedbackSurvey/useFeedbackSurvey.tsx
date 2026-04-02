@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDynamicConfig } from 'src/hooks/useDynamicConfig.js';
 import { isFeedbackSurveyDisabled } from 'src/services/analytics/config.js';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from 'src/services/analytics/index.js';
@@ -226,7 +226,7 @@ export function useFeedbackSurvey(messages: Message[], isLoading: boolean, submi
     if (!isModelAllowed) {
       return false;
     }
-    if (isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY)) {
+    if (isEnvTruthy(process.env.VIBECODE_DISABLE_FEEDBACK_SURVEY)) {
       return false;
     }
     if (isFeedbackSurveyDisabled()) {

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * XAA IdP Login — acquires an OIDC id_token from an enterprise IdP via the
  * standard authorization_code + PKCE flow, then caches it by IdP issuer.
  *
@@ -30,7 +30,7 @@ import { jsonParse } from '../../utils/slowOperations.js'
 import { buildRedirectUri, findAvailablePort } from './oauthPort.js'
 
 export function isXaaEnabled(): boolean {
-  return isEnvTruthy(process.env.CLAUDE_CODE_ENABLE_XAA)
+  return isEnvTruthy(process.env.VIBECODE_ENABLE_XAA)
 }
 
 export type XaaIdpSettings = {

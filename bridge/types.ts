@@ -1,4 +1,4 @@
-/** Default per-session timeout (24 hours). */
+﻿/** Default per-session timeout (24 hours). */
 export const DEFAULT_SESSION_TIMEOUT_MS = 24 * 60 * 60 * 1000
 
 /** Reusable login guidance appended to bridge auth errors. */
@@ -39,7 +39,7 @@ export type WorkSecret = {
     git_info?: { type: string; repo: string; ref?: string; token?: string }
   }>
   auth: Array<{ type: string; token: string }>
-  claude_code_args?: Record<string, string> | null
+  VIBECODE_args?: Record<string, string> | null
   mcp_config?: unknown | null
   environment_variables?: Record<string, string> | null
   /**
@@ -76,7 +76,7 @@ export type SpawnMode = 'single-session' | 'worktree' | 'same-dir'
  * sends `"cowork"`, which isn't in this union. REPL code uses this narrow
  * type for its own exhaustiveness; wire-level fields accept any string.
  */
-export type BridgeWorkerType = 'claude_code' | 'claude_code_assistant'
+export type BridgeWorkerType = 'claude_code' | 'VIBECODE_assistant'
 
 export type BridgeConfig = {
   dir: string

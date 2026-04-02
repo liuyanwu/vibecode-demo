@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+﻿import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { isFeedbackSurveyDisabled } from 'src/services/analytics/config.js';
 import { getFeatureValue_CACHED_MAY_BE_STALE } from 'src/services/analytics/growthbook.js';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from 'src/services/analytics/index.js';
@@ -178,7 +178,7 @@ export function useMemorySurvey(messages: Message[], isLoading: boolean, hasActi
     if (!isPolicyAllowed('allow_product_feedback')) {
       return;
     }
-    if (isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY)) {
+    if (isEnvTruthy(process.env.VIBECODE_DISABLE_FEEDBACK_SURVEY)) {
       return;
     }
     if (!lastAssistant || seenAssistantUuids.current.has(lastAssistant.uuid)) {

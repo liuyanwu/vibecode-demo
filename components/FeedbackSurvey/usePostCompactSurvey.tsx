@@ -1,4 +1,4 @@
-import { c as _c } from "react/compiler-runtime";
+﻿import { c as _c } from "react/compiler-runtime";
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { isFeedbackSurveyDisabled } from 'src/services/analytics/config.js';
 import { checkStatsigFeatureGate_CACHED_MAY_BE_STALE } from 'src/services/analytics/growthbook.js';
@@ -119,7 +119,7 @@ export function usePostCompactSurvey(messages, isLoading, t0, t1) {
       if (isFeedbackSurveyDisabled()) {
         return;
       }
-      if (isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY)) {
+      if (isEnvTruthy(process.env.VIBECODE_DISABLE_FEEDBACK_SURVEY)) {
         return;
       }
       if (pendingCompactBoundaryUuid.current !== null) {

@@ -1,4 +1,4 @@
-import { createHash, type UUID } from 'crypto'
+﻿import { createHash, type UUID } from 'crypto'
 import { diffLines } from 'diff'
 import type { Stats } from 'fs'
 import {
@@ -66,14 +66,14 @@ export function fileHistoryEnabled(): boolean {
   }
   return (
     getGlobalConfig().fileCheckpointingEnabled !== false &&
-    !isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING)
+    !isEnvTruthy(process.env.VIBECODE_DISABLE_FILE_CHECKPOINTING)
   )
 }
 
 function fileHistoryEnabledSdk(): boolean {
   return (
-    isEnvTruthy(process.env.CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING) &&
-    !isEnvTruthy(process.env.CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING)
+    isEnvTruthy(process.env.VIBECODE_ENABLE_SDK_FILE_CHECKPOINTING) &&
+    !isEnvTruthy(process.env.VIBECODE_DISABLE_FILE_CHECKPOINTING)
   )
 }
 

@@ -1,0 +1,19 @@
+diff --git a/utils/proxy.ts b/utils/proxy.ts
+index 39880231..51a920c2 100644
+--- a/utils/proxy.ts
++++ b/utils/proxy.ts
+@@ -1,4 +1,4 @@
+-// @aws-sdk/credential-provider-node and @smithy/node-http-handler are imported
++﻿// @aws-sdk/credential-provider-node and @smithy/node-http-handler are imported
+ // dynamically in getAWSClientProxyConfig() to defer ~929KB of AWS SDK.
+ // undici is lazy-required inside getProxyAgent/configureGlobalAgents to defer
+ // ~1.5MB when no HTTPS_PROXY/mTLS env vars are set (the common case).
+@@ -148,7 +148,7 @@ function createHttpsProxyAgent(
+     ...(caCerts && { ca: caCerts }),
+   }
+ 
+-  if (isEnvTruthy(process.env.CLAUDE_CODE_PROXY_RESOLVES_HOSTS)) {
++  if (isEnvTruthy(process.env.VIBECODE_PROXY_RESOLVES_HOSTS)) {
+     // Skip local DNS resolution - let the proxy resolve hostnames
+     // This is needed for environments where DNS is not configured locally
+     // and instead handled by the proxy (as in sandboxes)
