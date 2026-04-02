@@ -16,9 +16,18 @@ export interface PreflightCheckResult {
 }
 async function checkEndpoints(): Promise<PreflightCheckResult> {
   try {
-    const oauthConfig = getOauthConfig();
-    const tokenUrl = new URL(oauthConfig.TOKEN_URL);
-    const endpoints = [`${oauthConfig.BASE_API_URL}/api/hello`, `${tokenUrl.origin}/v1/oauth/hello`];
+    // Use ANTHROPIC_BASE_URL if set (for Qwen/3rd party APIs), otherwise use OAuth config
+    const baseUrl = process.env.ANTHROPIC_BASE_URL;
+    const endpoints = baseUrl
+      ? [`${baseUrl.replace(/\/$/, '')}/api/hello`]  // Strip trailing slash
+      : [];
+
+    // If no custom base URL, fall back to OAuth endpoints
+    if (!baseUrl) {
+      const oauthConfig = getOauthConfig();
+      const tokenUrl = new URL(oauthConfig.TOKEN_URL);
+      endpoints.push(`${oauthConfig.BASE_API_URL}/api/hello`, `${tokenUrl.origin}/v1/oauth/hello`);
+    }
     const checkEndpoint = async (url: string): Promise<PreflightCheckResult> => {
       try {
         const response = await axios.get(url, {
